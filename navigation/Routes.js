@@ -1,12 +1,18 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-// import auth from '@react-native-firebase/auth';
-import { AuthContext } from './AuthProvider';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import AuthStack from './AuthStack';
-// import AppStack from './AppStack';
+import AppStack from './AppStack';
 
-const Routes = () => {
+const Routes = async () => {
+  let isLoggedIn = false;
+  try {
+    isLoggedIn = await AsyncStorage.setItem('isLoggedIn');
+    alert(`is logged in: ${isLoggedIn}`)
+  } catch (e) {
+    alert('fail');
+  }
   // const { user, setUser } = useContext(AuthContext);
   // const [initializing, setInitializing] = useState(true);
 
@@ -24,7 +30,7 @@ const Routes = () => {
 
   return (
     <NavigationContainer>
-      <AuthStack />
+      {isLoggedIn ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };

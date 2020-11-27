@@ -41,7 +41,7 @@ class LoginScreen extends React.Component {
         await AsyncStorage.setItem('isLoggedIn', '1');
         this.props.navigation.navigate('LoggedIn')
       } else {
-        alert('Wrong stuff')
+        alert('Wrong credentials')
       }
       // axios.get(`https://friendash-app.heroku.com/user/login`, { user })
       //   .then(res => {

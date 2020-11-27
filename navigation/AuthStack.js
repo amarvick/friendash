@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import OnboardingScreen from '../screens/OnboardingScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
 import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import AsyncStorage from '@react-native-community/async-storage';
 
 const AuthStackNavigator = createStackNavigator();

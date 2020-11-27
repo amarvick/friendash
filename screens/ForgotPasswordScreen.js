@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 import FormButton from '../components/FormButton';
 import FormInput from '../components/FormInput';
-import { AuthContext } from '../navigation/AuthProvider';
 
 class ForgotPasswordScreen extends React.Component {
   state = {
@@ -28,7 +27,6 @@ class ForgotPasswordScreen extends React.Component {
   }
 
   render() {
-    // const {login, googleLogin, fbLogin} = useContext(AuthContext);
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Forgot Password</Text>

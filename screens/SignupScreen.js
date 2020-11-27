@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 import FormButton from '../components/FormButton';
 import FormInput from '../components/FormInput';
-import { AuthContext } from '../navigation/AuthProvider';
 
 class SignupScreen extends React.Component {
   state = {
