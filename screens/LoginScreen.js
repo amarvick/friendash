@@ -53,10 +53,6 @@ class LoginScreen extends React.Component {
     return;
   }
 
-  forgotPassword = () => {
-    alert('You forgot your password. What a loser!')
-  }
-
   render() {
     // const {login, googleLogin, fbLogin} = useContext(AuthContext);
     return (

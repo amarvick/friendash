@@ -9,7 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AsyncStorage from '@react-native-community/async-storage';
 
-const AppStack = createStackNavigator();
+const AuthStackNavigator = createStackNavigator();
 
 const AuthStack = () => {
   // Code below - may no longer be needed. Will use onboarding UI for when you sign up for an account
@@ -35,18 +35,18 @@ const AuthStack = () => {
   }
 
   return (
-    <AppStack.Navigator initialRouteName={routeName}>
-      <AppStack.Screen
+    <AuthStackNavigator.Navigator initialRouteName={routeName}>
+      <AuthStackNavigator.Screen
         name="Onboarding"
         component={OnboardingScreen}
         options={{ header: () => null }}
       />
-      <AppStack.Screen
+      <AuthStackNavigator.Screen
         name="Login"
         component={LoginScreen}
         options={{ header: () => null }}
       />
-      <AppStack.Screen
+      <AuthStackNavigator.Screen
         name="Signup"
         component={SignupScreen}
         options={({ navigation }) => ({
@@ -67,7 +67,7 @@ const AuthStack = () => {
           )
         })}
       />
-      <AppStack.Screen
+      <AuthStackNavigator.Screen
         name="ForgotPassword"
         component={ForgotPasswordScreen}
         options={({ navigation }) => ({
@@ -88,7 +88,7 @@ const AuthStack = () => {
           )
         })}
       />
-    </AppStack.Navigator>
+    </AuthStackNavigator.Navigator>
   )
 }
 
