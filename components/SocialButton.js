@@ -30,11 +30,11 @@ const SocialButton = ({ backgroundColor, btnType, color, buttonText, ...props })
 const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 10,
-    width: '100%',
-    height: windowHeight / 15,
+    width: '85%',
+    height: windowHeight / 20,
     padding: 10,
     flexDirection: 'row',
-    borderRadius: 3,
+    borderRadius: 25,
   },
   iconWrapper: {
     width: 30,

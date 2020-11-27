@@ -45,12 +45,14 @@ class LoginScreen extends React.Component {
     // const {login, googleLogin, fbLogin} = useContext(AuthContext);
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Login Screen</Text>
+        <Image style={styles.logo} source={require('../assets/running.png')} />
+
+        <View style={{ marginBottom: 60 }}></View>
         <FormInput
           labelValue={this.state.email}
           onChangeText={email => this.onChangeEmail(email)}
           placeholderText="Email"
-          iconType="user"
+          iconType="mail"
           keyboardType="email-address"
           autoCapitalize={false}
           autoCorrect={false}
@@ -62,37 +64,27 @@ class LoginScreen extends React.Component {
           secureTextEntry={true}
           onChangeText={password => this.onChangePassword(password)}
         />
+        <View style={{ marginBottom: 30 }}></View>
         <FormButton
           buttonText="Sign In"
           onPress={() => this.signIn()}
         />
-        <TouchableOpacity 
-          style={styles.forgotButton}
+
+        <View style={{ marginBottom: 30 }}></View>
+        <TouchableOpacity
           onPress={() => this.forgotPassword()}
         >
-          <Text style={styles.navButtonText}>Forgot Password?</Text>
+          <Text style={styles.text}>Forgot Password?</Text>
         </TouchableOpacity>
-        
-        <SocialButton
-          buttonText="Sign in with Facebook"
-          btnType="facebook"
-          color="#4867aa"
-          backgroundColor="#e6eaf4"
-          onPress={() => {}}
-        />
-        <SocialButton
-          buttonText="Sign in with Google"
-          btnType="google"
-          color="#de4d41"
-          backgroundColor="#f5e7ea"
-          onPress={() => {}}
-        />
-        <TouchableOpacity 
-          style={styles.forgotButton}
-          onPress={() => this.props.navigation.navigate('Signup')}
-        >
-          <Text style={styles.navButtonText}>Don't have an account? Create here</Text>
-        </TouchableOpacity>
+
+
+        <Text style={styles.text}>
+          Don't have an account?
+            <Text
+              onPress={() => this.props.navigation.navigate('Signup')}
+              style={styles.linkText}> Sign Up
+            </Text>
+        </Text>
       </View>
     );
   }
@@ -100,7 +92,7 @@ class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f9fafd',
+    backgroundColor: '#65c2f5',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -112,8 +104,13 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   text: {
-    fontFamily: 'Kufam-SemiBoldItalic',
-    fontSize: 28,
+    fontSize: 16,
+    marginBottom: 10,
+    color: '#051d5f',
+  },
+  linkText: {
+    fontWeight: 'bold',
+    fontSize: 16,
     marginBottom: 10,
     color: '#051d5f',
   },
@@ -127,7 +124,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '500',
     color: '#2e64e5',
-    fontFamily: 'Lato-Regular',
   },
 });
 

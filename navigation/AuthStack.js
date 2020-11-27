@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import OnboardingScreen from '../screens/OnboardingScreen';
 import LoginScreen from '../screens/LoginScreen';
@@ -52,16 +52,16 @@ const AuthStack = () => {
         options={({ navigation }) => ({
           title: '',
           headerStyle: {
-            backgroundColor: '#f9fafd',
+            backgroundColor: '#65c2f5',
             shadowColor: '#f9fafd',
             elevation: 0,
           },
           headerLeft: () => (
-            <View style={{margin: 10}}>
+            <View style={{margin: 5}}>
               <Icon.Button
                 name="long-arrow-left"
                 size={25}
-                backgroundColor='#f9fafd'
+                backgroundColor='#65c2f5'
                 color='#333'
                 onPress={() => navigation.navigate('Login')}
               />

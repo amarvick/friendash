@@ -11,7 +11,7 @@ const FormInput = ({ labelValue, placeholderText, iconType, ...props }) => {
         <AntDesign
           name={iconType}
           size={25}
-          color="#666"
+          color="#65c2f5"
         />
       </View>
       <TextInput
@@ -30,21 +30,30 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginTop: 5,
     marginBottom: 10,
-    width: '100%',
-    height: windowHeight / 15,
-    borderColor: '#ccc',
-    borderRadius: 3,
+    width: '85%',
+    height: windowHeight / 20,
+    borderColor: '#b0d6f5',
+    borderRadius: 25,
     borderWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    
+    elevation: 3,
   },
   iconStyle: {
     padding: 10,
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRightColor: '#ccc',
+    borderRightColor: '#fff',
     borderRightWidth: 1,
     width: 50,
   },
@@ -52,7 +61,6 @@ const styles = StyleSheet.create({
     padding: 10,
     flex: 1,
     fontSize: 16,
-    fontFamily: 'Lato-Regular',
     color: '#333',
     justifyContent: 'center',
     alignItems: 'center',

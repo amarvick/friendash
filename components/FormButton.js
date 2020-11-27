@@ -13,19 +13,26 @@ const FormButton = ({ buttonText, ...props }) => {
 const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 10,
-    width: '100%',
-    height: windowHeight / 15,
-    backgroundColor: '#2e64e5',
+    width: '85%',
+    height: windowHeight / 20,
+    backgroundColor: '#4687AB',
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: 3,
+    borderRadius: 25,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   buttonText: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#ffffff',
-    fontFamily: 'Lato-Regular',
   }
 });
 

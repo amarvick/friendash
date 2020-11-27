@@ -135,7 +135,7 @@ class SignupScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#f9fafd',
+    backgroundColor: '#65c2f5',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -154,7 +154,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '500',
     color: '#2e64e5',
-    fontFamily: 'Lato-Regular',
   },
   textPrivate: {
     flexDirection: 'row',
