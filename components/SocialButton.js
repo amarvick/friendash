@@ -30,7 +30,8 @@ const SocialButton = ({ backgroundColor, btnType, color, buttonText, ...props })
 const styles = StyleSheet.create({
   buttonContainer: {
     marginTop: 10,
-    width: '85%',
+    marginHorizontal: 10,
+    width: '40%',
     height: windowHeight / 20,
     padding: 10,
     flexDirection: 'row',
@@ -50,9 +51,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    fontFamily: 'Lato-Regular',
+    fontSize: 16,
   },
 });
 

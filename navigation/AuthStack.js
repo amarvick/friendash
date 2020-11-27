@@ -4,7 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import OnboardingScreen from '../screens/OnboardingScreen';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
-
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -53,8 +53,27 @@ const AuthStack = () => {
           title: '',
           headerStyle: {
             backgroundColor: '#65c2f5',
-            shadowColor: '#f9fafd',
-            elevation: 0,
+          },
+          headerLeft: () => (
+            <View style={{margin: 5}}>
+              <Icon.Button
+                name="long-arrow-left"
+                size={25}
+                backgroundColor='#65c2f5'
+                color='#333'
+                onPress={() => navigation.navigate('Login')}
+              />
+            </View>
+          )
+        })}
+      />
+      <AppStack.Screen
+        name="ForgotPassword"
+        component={ForgotPasswordScreen}
+        options={({ navigation }) => ({
+          title: '',
+          headerStyle: {
+            backgroundColor: '#65c2f5',
           },
           headerLeft: () => (
             <View style={{margin: 5}}>

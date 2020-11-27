@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
 import FormButton from '../components/FormButton';
 import FormInput from '../components/FormInput';
-import SocialButton from '../components/SocialButton';
 import { AuthContext } from '../navigation/AuthProvider';
 
 class SignupScreen extends React.Component {
@@ -45,7 +44,12 @@ class SignupScreen extends React.Component {
 
 
     if (errors.length == 0) {
-
+      user = this.state;
+      axios.post(`https://friendash-app.heroku.com/user/signup`, { user })
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+        })
     }
 
     return;
@@ -55,7 +59,7 @@ class SignupScreen extends React.Component {
     // const {login, googleLogin, fbLogin} = useContext(AuthContext);
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Create an account</Text>
+        <Text style={styles.text}>Create An Account</Text>
   
         <FormInput
           labelValue={this.state.email}
@@ -102,32 +106,6 @@ class SignupScreen extends React.Component {
             Privacy Policy
           </Text>
         </View>
-  
-        {Platform.OS === 'android' ? (
-          <View>
-            <SocialButton
-              buttonTitle="Sign Up with Facebook"
-              btnType="facebook"
-              color="#4867aa"
-              backgroundColor="#e6eaf4"
-              onPress={() => {}}
-            />
-      
-            <SocialButton
-              buttonTitle="Sign Up with Google"
-              btnType="google"
-              color="#de4d41"
-              backgroundColor="#f5e7ea"
-              onPress={() => {}}
-            />
-          </View>
-        ) : null}
-  
-        <TouchableOpacity
-          style={styles.navButton}
-          onPress={() => this.props.navigation.navigate('Login')}>
-          <Text style={styles.navButtonText}>Have an account? Sign In</Text>
-        </TouchableOpacity>
       </View>
     );
   }
@@ -142,9 +120,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   text: {
-    fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 28,
-    marginBottom: 10,
+    marginBottom: 60,
     color: '#051d5f',
   },
   navButton: {
@@ -164,7 +141,6 @@ const styles = StyleSheet.create({
   color_textPrivate: {
     fontSize: 13,
     fontWeight: '400',
-    fontFamily: 'Lato-Regular',
     color: 'grey',
   },
 });

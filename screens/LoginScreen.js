@@ -1,10 +1,15 @@
 import React, { useContext } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, AsyncStorage } from 'react-native';
+import { windowHeight } from '../utils/Dimensions';
 
 import FormButton from '../components/FormButton';
 import FormInput from '../components/FormInput';
-import SocialButton from '../components/SocialButton';
 import { AuthContext } from '../navigation/AuthProvider';
+
+const userInfo = {
+  email: 'alex@friendash.com',
+  password: 'password',
+}
 
 class LoginScreen extends React.Component {
   state = {
@@ -20,7 +25,7 @@ class LoginScreen extends React.Component {
     this.setState({ password });
   }
 
-  signIn = () => {
+  signIn = async () => {
     let errors = [];
     if (this.state.email == '') {
       errors.push("Fill out Email");
@@ -31,7 +36,18 @@ class LoginScreen extends React.Component {
     }
 
     if (errors.length == 0) {
-
+      const user = this.state;
+      if (user.email === userInfo.email && user.password === userInfo.password) {
+        await AsyncStorage.setItem('isLoggedIn', '1');
+        this.props.navigation.navigate('LoggedIn')
+      } else {
+        alert('Wrong stuff')
+      }
+      // axios.get(`https://friendash-app.heroku.com/user/login`, { user })
+      //   .then(res => {
+      //     console.log(res);
+      //     console.log(res.data);
+      //   })
     }
 
     return;
@@ -46,8 +62,6 @@ class LoginScreen extends React.Component {
     return (
       <View style={styles.container}>
         <Image style={styles.logo} source={require('../assets/running.png')} />
-
-        <View style={{ marginBottom: 60 }}></View>
         <FormInput
           labelValue={this.state.email}
           onChangeText={email => this.onChangeEmail(email)}
@@ -67,24 +81,25 @@ class LoginScreen extends React.Component {
         <View style={{ marginBottom: 30 }}></View>
         <FormButton
           buttonText="Sign In"
-          onPress={() => this.signIn()}
+          onPress={this.signIn}
         />
 
         <View style={{ marginBottom: 30 }}></View>
         <TouchableOpacity
-          onPress={() => this.forgotPassword()}
+          onPress={() => this.props.navigation.navigate('ForgotPassword')}
         >
-          <Text style={styles.text}>Forgot Password?</Text>
+          <Text style={styles.linkText}>Forgot Password?</Text>
         </TouchableOpacity>
 
-
-        <Text style={styles.text}>
-          Don't have an account?
+        <View style={styles.signUp}>
+          <Text style={styles.text}>
+            New User?
             <Text
               onPress={() => this.props.navigation.navigate('Signup')}
-              style={styles.linkText}> Sign Up
+              style={styles.linkText}> Create an account.
             </Text>
-        </Text>
+          </Text>
+        </View>
       </View>
     );
   }
@@ -102,6 +117,7 @@ const styles = StyleSheet.create({
     height: 150,
     width: 150,
     resizeMode: 'cover',
+    marginBottom: 60,
   },
   text: {
     fontSize: 16,
@@ -114,17 +130,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#051d5f',
   },
-  navButton: {
-    marginTop: 15,
-  },
-  forgotButton: {
-    marginVertical: 35,
-  },
-  navButtonText: {
-    fontSize: 18,
-    fontWeight: '500',
-    color: '#2e64e5',
-  },
+  signUp: {
+    position: 'absolute',
+    top: windowHeight - 100
+  }
 });
 
 export default LoginScreen;
