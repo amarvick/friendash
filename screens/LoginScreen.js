@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet, AsyncStorage } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { windowHeight } from '../utils/Dimensions';
-
 import FormButton from '../components/FormButton';
 import FormInput from '../components/FormInput';
-import { AuthContext } from '../navigation/AuthProvider';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const userInfo = {
   email: 'alex@friendash.com',
@@ -38,8 +37,13 @@ class LoginScreen extends React.Component {
     if (errors.length == 0) {
       const user = this.state;
       if (user.email === userInfo.email && user.password === userInfo.password) {
-        await AsyncStorage.setItem('isLoggedIn', '1');
-        this.props.navigation.navigate('LoggedIn')
+        try {
+          await AsyncStorage.setItem('user', JSON.stringify(user))
+            .then(() => this.props.navigation.navigate('App', { screen: 'Home' }))
+            .catch(e => console.log(e));
+        } catch (e) {
+          alert(JSON.stringify(e));
+        }
       } else {
         alert('Wrong credentials')
       }
@@ -54,7 +58,6 @@ class LoginScreen extends React.Component {
   }
 
   render() {
-    // const {login, googleLogin, fbLogin} = useContext(AuthContext);
     return (
       <View style={styles.container}>
         <Image style={styles.logo} source={require('../assets/running.png')} />

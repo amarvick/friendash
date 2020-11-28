@@ -1,17 +1,23 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { AsyncStorage } from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 class HomeScreen extends React.Component {
-  logOut = async () => {
-    alert('logging out')
+  _logOut = async () => {
+    try {
+      AsyncStorage.clear();
+      this.props.navigation.navigate('Auth', { screen: 'LoginScreen' });
+    } catch (e) {
+      alert('error')
+      console.log(e);
+    }
   }
 
   render() {
     return (
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={() => this.logOut()}
+          onPress={this._logOut}
         >
           <Text style={styles.linkText}>Log out</Text>
         </TouchableOpacity>
