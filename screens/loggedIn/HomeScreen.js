@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { AuthContext } from '../components/context';
+import { AuthContext } from '../../components/context';
 
 const HomeScreen = ({ navigation }) => {
   const { signOut } = React.useContext(AuthContext);
@@ -17,7 +17,7 @@ const HomeScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#65c2f5',
+    backgroundColor: '#fff',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',

@@ -1,14 +1,14 @@
-import { createAppContainer, createSwitchNavigator } from 'react-navigation'
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import { DrawerContent, createDrawerNavigator } from '@react-navigation/drawer';
 import { ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import RootStackScreen from './screens/root/RootStackScreen';
-import HomeScreen from './screens/HomeScreen';
-
+import RootStackScreen from './screens/loggedOut/RootStackScreen';
+import HomeScreen from './screens/loggedIn/HomeScreen';
+import { loginReducer } from './redux/reducers';
 import { AuthContext } from './components/context';
+import { LOGIN_ACTION_TYPES } from './redux/actiontypes';
 
 const Drawer = createDrawerNavigator();
 
@@ -18,58 +18,26 @@ const App = () => {
     password: 'password',
   }
 
-  // Put in to redux folder eventually? :)
+  // TO DO - try to put everything here + 33 lines down in actions.
   const initialLoginState = { 
     isLoading: true, 
     user: null, 
     userToken: null, 
   }
-
-  const loginReducer = (prevState, action) => {
-    switch(action.type) {
-      case 'RETRIEVE_TOKEN': 
-        return {
-          ...prevState,
-          userToken: action.token,
-          isLoading: false,
-        };
-      case 'LOGIN': 
-        return {
-          ...prevState,
-          user: action.id,
-          isLoading: false,
-        };
-      case 'LOGOUT': 
-        return {
-          ...prevState,
-          userToken: null,
-          user: null,
-          isLoading: false,
-        };
-      case 'SIGNUP': 
-        return {
-          ...prevState,
-          userToken: action.token,
-          user: action.user,
-          isLoading: false,
-        };
-    }
-  };
-
+  
   const [loginState, dispatch] = React.useReducer(loginReducer, initialLoginState);
-
   const authContext = React.useMemo(() => ({
     signIn: async(email, password) => {
       const userToken = 'asdf'
       if (email === userInfo.email && password === userInfo.password) {
         try {
           await AsyncStorage.setItem('userToken', userToken);
+          dispatch({ type: LOGIN_ACTION_TYPES.LOGIN, id: email, token: userToken });
         } catch(e) {
           console.log(e);
         }
       }
 
-      dispatch({ type: 'LOGIN', id: email, token: userToken });
     },
     signOut: async() => {
       try {
@@ -77,13 +45,13 @@ const App = () => {
       } catch(e) {
         console.log(e);
       }
-      dispatch({ type: 'LOGOUT' });
+      dispatch({ type: LOGIN_ACTION_TYPES.LOGOUT });
     },
     signUp: () => {
       // setUserToken('asdfae');
       // setIsLoading(false);
     },
-  }))
+  }));
 
   useEffect(() => {
     setTimeout(async() => {
@@ -93,7 +61,7 @@ const App = () => {
       } catch(e) {
         console.log(e);
       }
-      dispatch({ type: 'RETRIEVE_TOKEN', token: userToken });
+      dispatch({ type: LOGIN_ACTION_TYPES.RETRIEVE_TOKEN, token: userToken });
     }, 1000);
   }, []);
 
@@ -105,12 +73,11 @@ const App = () => {
     )
   }
 
-  alert(loginState.user);
   return (
     <AuthContext.Provider value={authContext}>
       <NavigationContainer>
         {
-          loginState.userToken != null ? (
+          loginState.userToken !== null ? (
             <Drawer.Navigator drawerContent={props => <DrawerContent {...props} />}>
               <Drawer.Screen name="HomeScreen" component={HomeScreen} />
             </Drawer.Navigator>
