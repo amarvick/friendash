@@ -1,45 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import OnboardingScreen from '../screens/OnboardingScreen';
-import LoginScreen from '../screens/LoginScreen';
-import SignupScreen from '../screens/SignupScreen';
-import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
+import OnboardingScreen from '../screens/root/OnboardingScreen';
+import LoginScreen from '../screens/root/LoginScreen';
+import SignupScreen from '../screens/root/SignupScreen';
+import ForgotPasswordScreen from '../screens/root/ForgotPasswordScreen';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import AsyncStorage from '@react-native-community/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 
 const AuthStackNavigator = createStackNavigator();
 
 const AuthStack = () => {
-  // Code below - may no longer be needed. Will use onboarding UI for when you sign up for an account
-  const [isFirstLaunch, setIsFirstLaunch] = useState(null);
-  let routeName;
-
-  useEffect(() => {
-    AsyncStorage.getItem('alreadyLaunched').then(value => {
-      if (value == null) {
-        AsyncStorage.setItem('alreadyLaunched', 'true');
-        setIsFirstLaunch(true);
-      } else {
-        setIsFirstLaunch(false);
-      }
-    })
-  }, []);
-
-  if (isFirstLaunch == null) {
-    return null;
-  } else if (isFirstLaunch == true) {
-    routeName = 'Onboarding';
-  } else {
-    routeName = 'Login';
-  }
-
   return (
     <NavigationContainer>
-      <AuthStackNavigator.Navigator initialRouteName={routeName}>
+      <AuthStackNavigator.Navigator initialRouteName={'Login'}>
         <AuthStackNavigator.Screen
           name="Onboarding"
           component={OnboardingScreen}
@@ -98,3 +74,26 @@ const AuthStack = () => {
 }
 
 export default AuthStack;
+
+  // // Code below - may no longer be needed. Will use onboarding UI for when you sign up for an account
+  // const [isFirstLaunch, setIsFirstLaunch] = useState(null);
+  // let routeName;
+
+  // useEffect(() => {
+  //   AsyncStorage.getItem('alreadyLaunched').then(value => {
+  //     if (value == null) {
+  //       AsyncStorage.setItem('alreadyLaunched', 'true');
+  //       setIsFirstLaunch(true);
+  //     } else {
+  //       setIsFirstLaunch(false);
+  //     }
+  //   })
+  // }, []);
+
+  // if (isFirstLaunch == null) {
+  //   return null;
+  // } else if (isFirstLaunch == true) {
+  //   routeName = 'Onboarding';
+  // } else {
+  //   routeName = 'Login';
+  // }

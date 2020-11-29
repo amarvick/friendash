@@ -62,19 +62,19 @@ class OnboardingScreen extends React.Component {
           pages={[
             {
               backgroundColor: '#03dbfc',
-              image: <Image source={require('../assets/favicon.png')} />,
+              image: <Image source={require('../../assets/favicon.png')} />,
               title: 'Welcome to Runnect!',
               subtitle: 'Meet Runners in your local area',
             },
             {
               backgroundColor: '#03dbfc',
-              image: <Image source={require('../assets/favicon.png')} />,
+              image: <Image source={require('../../assets/favicon.png')} />,
               title: 'Find Your Next Training Buddy',
               subtitle: 'Find people with common goals',
             },
             {
               backgroundColor: '#03dbfc',
-              image: <Image source={require('../assets/favicon.png')} />,
+              image: <Image source={require('../../assets/favicon.png')} />,
               title: 'Join Groups',
               subtitle: 'Strength in numbers',
             },

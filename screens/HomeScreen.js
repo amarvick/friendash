@@ -1,29 +1,18 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AuthContext } from '../components/context';
 
-class HomeScreen extends React.Component {
-  _logOut = async () => {
-    try {
-      AsyncStorage.clear();
-      this.props.navigation.navigate('Auth', { screen: 'LoginScreen' });
-    } catch (e) {
-      alert('error')
-      console.log(e);
-    }
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <TouchableOpacity
-          onPress={this._logOut}
-        >
-          <Text style={styles.linkText}>Log out</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+const HomeScreen = ({ navigation }) => {
+  const { signOut } = React.useContext(AuthContext);
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity
+        onPress={() => { signOut() }}
+      >
+        <Text style={styles.linkText}>Log out</Text>
+      </TouchableOpacity>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

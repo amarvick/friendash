@@ -12,7 +12,7 @@ const AppStack = () => {
   return <NavigationContainer>
     <AppStackNavigator.Navigator>
       <AppStackNavigator.Screen
-        name="RN Social"
+        name="Home"
         component={HomeScreen}
         options={{
           headerTitleAlign: 'center',
