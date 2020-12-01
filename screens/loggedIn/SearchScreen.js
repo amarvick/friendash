@@ -2,14 +2,14 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { AuthContext } from '../../components/context';
 
-const HomeScreen = ({ navigation }) => {
+const SearchScreen = ({ navigation }) => {
   const { signOut } = React.useContext(AuthContext);
   return (
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => { signOut() }}
       >
-        <Text style={styles.linkText}>Log out</Text>
+        <Text style={styles.linkText}>Search Screen</Text>
       </TouchableOpacity>
     </View>
   );
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default SearchScreen;
