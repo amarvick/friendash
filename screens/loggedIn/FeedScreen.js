@@ -4,12 +4,13 @@ import { AuthContext } from '../../components/context';
 
 const FeedScreen = ({ navigation }) => {
   const { signOut } = React.useContext(AuthContext);
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => { signOut() }}
       >
-        <Text style={styles.linkText}>Feed Screen</Text>
+        <Text style={styles.linkText}>Feed Screen {JSON.stringify(navigation)}</Text>
       </TouchableOpacity>
     </View>
   );

@@ -26,33 +26,34 @@ const TabOptionsGenerator = (tabLabel, tabIcon) => {
   }
 }
 
-const MainTabScreen = () => (
-  <Tab.Navigator
-    initialRouteName="Feed"
-    activeColor="#fff"
-  >
-    <Tab.Screen
-      name="Feed"
-      component={FeedStackScreen}
-      options={TabOptionsGenerator('Feed', 'md-list')}
-    />
-    <Tab.Screen
-      name="Calendar"
-      component={CalendarStackScreen}
-      options={TabOptionsGenerator('Calendar', 'md-calendar')}
-    />
-    <Tab.Screen
-      name="Connections"
-      component={ConnectionsStackScreen}
-      options={TabOptionsGenerator('Connections', 'md-people')}
-    />
-    <Tab.Screen
-      name="Search"
-      component={SearchStackScreen}
-      options={TabOptionsGenerator('Search', 'md-search')}
-    />
-  </Tab.Navigator>
-);
+const MainTabScreen = () => {
+  return (
+    <Tab.Navigator
+      initialRouteName="Feed"
+      activeColor="#fff"
+    >
+      <Tab.Screen
+        name="Feed"
+        component={FeedStackScreen}
+        options={TabOptionsGenerator('Feed', 'md-list')}
+      />
+      <Tab.Screen
+        name="Calendar"
+        component={CalendarStackScreen}
+        options={TabOptionsGenerator('Calendar', 'md-calendar')}
+      />
+      <Tab.Screen
+        name="Connections"
+        component={ConnectionsStackScreen}
+        options={TabOptionsGenerator('Connections', 'md-people')}
+      />
+      <Tab.Screen
+        name="Search"
+        component={SearchStackScreen}
+        options={TabOptionsGenerator('Search', 'md-search')}
+      />
+    </Tab.Navigator>
+)};
 
 export default MainTabScreen;
 

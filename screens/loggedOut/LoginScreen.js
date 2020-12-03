@@ -3,12 +3,8 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { windowHeight } from '../../utils/Dimensions';
 import FormButton from '../../components/FormButton';
 import FormInput from '../../components/FormInput';
-import { AuthContext } from '../../components/context';
-
-const userInfo = {
-  email: 'alex@friendash.com',
-  password: 'password',
-}
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/actions/loginActions';
 
 const LoginScreen = ({ navigation }) => {
   const [data, setData] = React.useState({
@@ -30,7 +26,6 @@ const LoginScreen = ({ navigation }) => {
     });
   }
 
-  const { signIn } = React.useContext(AuthContext);
   return (
     <View style={styles.container}>
       <Image style={styles.logo} source={require('../../assets/running.png')} />
@@ -53,7 +48,7 @@ const LoginScreen = ({ navigation }) => {
       <View style={{ marginBottom: 30 }}></View>
       <FormButton
         buttonText="Sign In"
-        onPress={() => { signIn(data.email, data.password) }}
+        onPress={() => useDispatch(login({'email': data.email, 'password': data.password }))}
       />
 
       <View style={{ marginBottom: 30 }}></View>

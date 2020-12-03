@@ -5,11 +5,7 @@ import {
   Avatar,
   Title,
   Caption,
-  Paragraph,
   Drawer,
-  Text,
-  TouchableRipple,
-  Switch
 } from 'react-native-paper';
 import {
   DrawerContentScrollView,
@@ -17,12 +13,9 @@ import {
 } from '@react-navigation/drawer';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
 import { AuthContext } from '../../components/context';
 
 export function DrawerContent(props) {
-
-  const paperTheme = useTheme();
 
   const { signOut, toggleTheme } = React.useContext(AuthContext);
 
@@ -33,9 +26,7 @@ export function DrawerContent(props) {
           <View style={styles.userInfoSection}>
             <View style={{ flexDirection: 'row', marginTop: 15 }}>
               <Avatar.Image
-                source={{
-                  uri: 'https://api.adorable.io/avatars/50/abott@adorable.png' // {user.profilePic}
-                }}
+                source={require('../../assets/SenatorMarvick.jpg')}
                 size={50}
               />
               <View style={{ marginLeft: 15, flexDirection: 'column' }}>
@@ -82,7 +73,7 @@ export function DrawerContent(props) {
             <DrawerItem
               icon={({ color, size }) => (
                 <Icon
-                  name="settings-outline"
+                  name="pencil-outline"
                   color={color}
                   size={size}
                 />
@@ -146,10 +137,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginRight: 15,
-  },
-  paragraph: {
-    fontWeight: 'bold',
-    marginRight: 3,
   },
   drawerSection: {
     marginTop: 15,
