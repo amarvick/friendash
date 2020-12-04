@@ -3,11 +3,9 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { AuthContext } from '../../components/context';
 
 const ContactScreen = ({ navigation }) => {
-  const { signOut } = React.useContext(AuthContext);
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => { signOut() }}
       >
         <Text style={styles.linkText}>Contact Screen</Text>
       </TouchableOpacity>

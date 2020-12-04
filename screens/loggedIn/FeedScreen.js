@@ -3,12 +3,11 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { AuthContext } from '../../components/context';
 
 const FeedScreen = ({ navigation }) => {
-  const { signOut } = React.useContext(AuthContext);
 
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => { signOut() }}
+        onPress={() => {}}
       >
         <Text style={styles.linkText}>Feed Screen {JSON.stringify(navigation)}</Text>
       </TouchableOpacity>

@@ -3,11 +3,9 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { AuthContext } from '../../components/context';
 
 const ConnectionsScreen = ({ navigation }) => {
-  const { signOut } = React.useContext(AuthContext);
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => { signOut() }}
       >
         <Text style={styles.linkText}>Connections Screen</Text>
       </TouchableOpacity>

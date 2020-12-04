@@ -1,9 +1,7 @@
-import thunkMiddleware from 'redux-thunk';
+import reducers from './reducers/reducers';
 import { createStore, applyMiddleware } from 'redux';
-import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'; // this is for debugging with React-Native-Debugger, you may leave it out
-import reducers from './reducers/reducer';
+import thunk from 'redux-thunk';
 
-export const store = createStore(
-  reducers,
-  composeWithDevTools(applyMiddleware(thunkMiddleware))
-);
+const configureStore = () => createStore(reducers, undefined, applyMiddleware(thunk));
+
+export default configureStore;

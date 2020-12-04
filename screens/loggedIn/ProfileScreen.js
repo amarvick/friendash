@@ -3,11 +3,10 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { AuthContext } from '../../components/context';
 
 const ProfileScreen = ({ navigation }) => {
-  const { signOut } = React.useContext(AuthContext);
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => { signOut() }}
+        onPress={() => {}}
       >
         <Text style={styles.linkText}>Profile Screen</Text>
       </TouchableOpacity>

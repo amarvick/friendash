@@ -6,10 +6,9 @@ const userInfo = {
   password: 'password',
 }
 
-// this is what our action should look like which dispatches the "payload" to reducer
 const setLoginState = (loginData) => {
   return {
-    type: LOGIN_ACTION_TYPES.SET_LOGIN_STATE,
+    type: 'SET_LOGIN_STATE',
     payload: loginData,
   };
 };
@@ -43,8 +42,8 @@ export const login = (loginInput) => {
 export const logout = () => {
   return async (dispatch) => {
     try {
-      setLoginLocal({}); // storing in local storage for next launch
-      dispatch(setLoginState({})); // our action is called here
+      setLoginLocal({});
+      dispatch(setLoginState({}));
     } catch (e) {
       Alert.alert('logout failed, sorry');
     }

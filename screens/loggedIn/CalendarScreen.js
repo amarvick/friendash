@@ -3,11 +3,9 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { AuthContext } from '../../components/context';
 
 const CalendarScreen = ({ navigation }) => {
-  const { signOut } = React.useContext(AuthContext);
   return (
     <View style={styles.container}>
       <TouchableOpacity
-        onPress={() => { signOut() }}
       >
         <Text style={styles.linkText}>Calendar Screen</Text>
       </TouchableOpacity>

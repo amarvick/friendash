@@ -17,7 +17,7 @@ import { AuthContext } from '../../components/context';
 
 export function DrawerContent(props) {
 
-  const { signOut, toggleTheme } = React.useContext(AuthContext);
+  // const { toggleTheme } = React.useContext(AuthContext);
 
   return (
     <View style={{ flex: 1 }}>
@@ -105,7 +105,7 @@ export function DrawerContent(props) {
             />
           )}
           label="Sign Out"
-          onPress={() => { signOut() }}
+          onPress={() => {}}
         />
       </Drawer.Section>
     </View>
