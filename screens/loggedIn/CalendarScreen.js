@@ -1,24 +1,27 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import CalendarEvent from '../../components/CalendarEvent';
 
 const CalendarScreen = (props) => {
+  const screen = props.user.calendar.length > 0 ? props.user.calendar.map(e => {
+    return (
+      <TouchableOpacity>
+        <CalendarEvent 
+          eventName={e.eventName}
+          date={e.date}
+          time={e.time}
+          location={e.location}
+        />
+      </TouchableOpacity>
+  )}) : (
+    <Text>You have no connections</Text>
+  );
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text>Calendar</Text>
-      {props.user.calendar.map(e => {
-        return (
-          <TouchableOpacity>
-            <CalendarEvent 
-              eventName={e.eventName}
-              date={e.date}
-              time={e.time}
-              location={e.location}
-            />
-          </TouchableOpacity>
-      )})}
-    </View>
+      {screen}
+    </ScrollView>
   );
 }
 
@@ -29,12 +32,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-  },
-  linkText: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginBottom: 10,
-    color: '#051d5f',
   },
 });
 
