@@ -1,12 +1,8 @@
 import { LOGIN_ACTION_TYPES } from '../actionTypes/loginActionTypes';
 
 const initialState = {
-  isLoggedIn: false,
-  userId: '',
+  user: '',
   token: '',
-  refreshToken: '',
-  expiresOn: '',
-  data: '',
   isLoading: false,
 };
 

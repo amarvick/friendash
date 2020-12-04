@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import {
-  useTheme,
   Avatar,
   Title,
   Caption,
@@ -11,14 +10,12 @@ import {
   DrawerContentScrollView,
   DrawerItem
 } from '@react-navigation/drawer';
+import { logout } from '../../redux/actions/loginActions';
+import { connect } from 'react-redux';
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { AuthContext } from '../../components/context';
 
-export function DrawerContent(props) {
-
-  // const { toggleTheme } = React.useContext(AuthContext);
-
+const DrawerContent = (props) => {
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
@@ -105,7 +102,7 @@ export function DrawerContent(props) {
             />
           )}
           label="Sign Out"
-          onPress={() => {}}
+          onPress={() => props.logout()}
         />
       </Drawer.Section>
     </View>
@@ -153,3 +150,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
 });
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logout: () => dispatch(logout())
+  }
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(DrawerContent);

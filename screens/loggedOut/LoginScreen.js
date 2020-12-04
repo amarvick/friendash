@@ -3,10 +3,10 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { windowHeight } from '../../utils/Dimensions';
 import FormButton from '../../components/FormButton';
 import FormInput from '../../components/FormInput';
-import { useDispatch } from 'react-redux';
 import { login } from '../../redux/actions/loginActions';
+import { connect } from 'react-redux';
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = (props, { navigation }) => {
   const [data, setData] = React.useState({
     email: '',
     password: '',
@@ -48,7 +48,7 @@ const LoginScreen = ({ navigation }) => {
       <View style={{ marginBottom: 30 }}></View>
       <FormButton
         buttonText="Sign In"
-        onPress={() => useDispatch(login({'email': data.email, 'password': data.password }))}
+        onPress={() => props.login({'email': data.email, 'password': data.password })}
       />
 
       <View style={{ marginBottom: 30 }}></View>
@@ -102,4 +102,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default LoginScreen;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    login: (email, password) => dispatch(login(email, password))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(LoginScreen);

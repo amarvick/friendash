@@ -1,14 +1,23 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { AuthContext } from '../../components/context';
+import { connect } from 'react-redux';
+import CalendarEvent from '../../components/CalendarEvent';
 
-const CalendarScreen = ({ navigation }) => {
+const CalendarScreen = (props) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-      >
-        <Text style={styles.linkText}>Calendar Screen</Text>
-      </TouchableOpacity>
+      <Text>Calendar</Text>
+      {props.user.calendar.map(e => {
+        return (
+          <TouchableOpacity>
+            <CalendarEvent 
+              eventName={e.eventName}
+              date={e.date}
+              time={e.time}
+              location={e.location}
+            />
+          </TouchableOpacity>
+      )})}
     </View>
   );
 }
@@ -29,4 +38,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CalendarScreen;
+const mapStateToProps = (state) => {
+  return {
+    user: state.loginReducer.user || [],
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  {},
+)(CalendarScreen);

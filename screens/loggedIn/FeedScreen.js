@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { AuthContext } from '../../components/context';
 
 const FeedScreen = ({ navigation }) => {
 
@@ -9,7 +8,7 @@ const FeedScreen = ({ navigation }) => {
       <TouchableOpacity
         onPress={() => {}}
       >
-        <Text style={styles.linkText}>Feed Screen {JSON.stringify(navigation)}</Text>
+        <Text style={styles.linkText}>Feed Screen</Text>
       </TouchableOpacity>
     </View>
   );
