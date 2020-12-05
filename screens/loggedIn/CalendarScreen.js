@@ -1,28 +1,34 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { TouchableOpacity, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import CalendarEvent from '../../components/CalendarEvent';
+import EmptyState from '../../components/EmptyState';
 
 const CalendarScreen = (props) => {
-  const screen = props.user.calendar.length > 0 ? props.user.calendar.map(e => {
-    return (
-      <TouchableOpacity>
-        <CalendarEvent 
-          eventName={e.eventName}
-          date={e.date}
-          time={e.time}
-          location={e.location}
-        />
-      </TouchableOpacity>
-  )}) : (
-    <Text>You have no connections</Text>
-  );
-  return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text>Calendar</Text>
-      {screen}
-    </ScrollView>
-  );
+  return props.user.calendar.length > 0 ? (
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        {props.user.calendar.map(e => {
+          return (
+            <TouchableOpacity>
+              <CalendarEvent
+                eventName={e.eventName}
+                date={e.date}
+                time={e.time}
+                location={e.location}
+              />
+            </TouchableOpacity>
+          )
+        })}
+      </ScrollView>
+    </SafeAreaView>
+  ) : (
+      <EmptyState
+        photo={require('../../assets/running.png')}
+        header="You have no events scheduled"
+        subtitle="Schedule an event in the contacts tab, or the upper right corner"
+      />
+    );
 }
 
 const styles = StyleSheet.create({
@@ -31,7 +37,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
   },
 });
 

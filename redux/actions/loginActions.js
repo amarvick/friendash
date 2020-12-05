@@ -31,29 +31,82 @@ export const login = (loginInput) => {
         'email': 'alex@friendash.com',
         'calendar': [
           {
+            'id': 0,
             'eventName': 'Run with Michael',
             'date': 'April 15, 2021',
             'time': '4:00PM PST',
             'location': 'Greenlake',
           },
           {
+            'id': 1,
             'eventName': 'Run with Nick',
             'date': 'April 15, 2021',
             'time': '4:00PM PST',
             'location': 'Sammamish',
           },
           {
+            'id': 2,
             'eventName': 'Run with Gavin',
             'date': 'April 15, 2021',
             'time': '4:00PM PST',
             'location': 'Greenlake',
           },
           {
+            'id': 3,
             'eventName': 'Run with Lorenzo',
             'date': 'April 15, 2021',
             'time': '4:00PM PST',
             'location': 'Ballard',
           }
+        ],
+        'connections': [
+          {
+            'id': 9,
+            'name': 'Regina',
+            'connected': true,
+          },
+          {
+            'id': 10,
+            'name': 'Michael',
+            'connected': true,
+          },
+          {
+            'id': 11,
+            'name': 'Nick',
+            'connected': true,
+          },
+          {
+            'id': 12,
+            'name': 'Gavin',
+            'connected': true,
+          },
+          {
+            'id': 13,
+            'name': 'Lorenzo',
+            'connected': true,
+          }
+        ],
+        'queried': [
+          {
+            'id': 14,
+            'name': 'Matt',
+            'connected': true,
+          },
+          {
+            'id': 15,
+            'name': 'Freddy',
+            'connected': true,
+          },
+          {
+            'id': 16,
+            'name': 'Miles',
+            'connected': true,
+          },
+          {
+            'id': 17,
+            'name': 'Zack',
+            'connected': true,
+          },
         ]
       }
       try {
