@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { TouchableOpacity, Image, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import ContactListItem from '../../components/ContactListItem';
 import EmptyState from '../../components/EmptyState';
@@ -8,13 +8,13 @@ const ConnectionsScreen = (props) => {
   return props.user.connections.length > 0 ? (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        {props.user.connections.map(c => {
-          alert(JSON.stringify(c));
+        {props.user.connections.map(user => {
           return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => props.navigation.navigate('ConnectionProfile', { user })}>
               <ContactListItem
                 image={require('../../assets/running.png')}
-                name={c.name}
+                connection={user}
+                goToChat={() => props.navigation.navigate('ConnectionProfile', { user })}
               />
             </TouchableOpacity>
           )

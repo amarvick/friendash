@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const DrawerContent = (props) => {
+  const user = props.user;
   return (
     <View style={{ flex: 1 }}>
       <DrawerContentScrollView {...props}>
@@ -43,7 +44,7 @@ const DrawerContent = (props) => {
                 />
               )}
               label="Home"
-              onPress={() => { props.navigation.navigate('Home') }}
+              onPress={() => props.navigation.navigate('Home') }
             />
             <DrawerItem
               icon={({ color, size }) => (
@@ -54,7 +55,7 @@ const DrawerContent = (props) => {
                 />
               )}
               label="View Profile"
-              onPress={() => { props.navigation.navigate('ViewProfile') }}
+              onPress={() => props.navigation.navigate('ViewProfile', { user })}
             />
             <DrawerItem
               icon={({ color, size }) => (
@@ -65,7 +66,7 @@ const DrawerContent = (props) => {
                 />
               )}
               label="Edit Profile"
-              onPress={() => { props.navigation.navigate('EditProfile') }}
+              onPress={() => props.navigation.navigate('EditProfile') }
             />
             <DrawerItem
               icon={({ color, size }) => (
@@ -76,7 +77,7 @@ const DrawerContent = (props) => {
                 />
               )}
               label="Contact Us"
-              onPress={() => { props.navigation.navigate('ContactUs') }}
+              onPress={() => props.navigation.navigate('ContactUs') }
             />
             <DrawerItem
               icon={({ color, size }) => (
@@ -87,7 +88,7 @@ const DrawerContent = (props) => {
                 />
               )}
               label="Subscription"
-              onPress={() => { props.navigation.navigate('Subscription') }}
+              onPress={() => props.navigation.navigate('Subscription') }
             />
           </Drawer.Section>
         </View>
@@ -151,6 +152,12 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = (state) => {
+  return {
+    user: state.loginReducer.user || [],
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     logout: () => dispatch(logout())
@@ -158,6 +165,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(DrawerContent);

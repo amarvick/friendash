@@ -1,14 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-const ProfileScreen = ({ navigation }) => {
+const ProfileScreen = (user) => {
+  const { name } = user.route.params.user;
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => {}}
-      >
-        <Text style={styles.linkText}>Profile Screen</Text>
-      </TouchableOpacity>
+      <Text style={styles.linkText}>{name}</Text>
     </View>
   );
 }

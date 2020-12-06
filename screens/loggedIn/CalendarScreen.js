@@ -10,7 +10,7 @@ const CalendarScreen = (props) => {
       <ScrollView>
         {props.user.calendar.map(e => {
           return (
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => props.navigation.navigate('ScheduledEventInfo', { e })}>
               <CalendarEvent
                 eventName={e.eventName}
                 date={e.date}

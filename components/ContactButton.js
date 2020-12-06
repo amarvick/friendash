@@ -1,6 +1,5 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { windowHeight } from '../utils/Dimensions';
 
 const ContactButton = ({ buttonText, ...props }) => {
   return (
@@ -14,7 +13,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     height: 35,
     marginTop: 10,
-    padding: 5,
+    paddingHorizontal: 10,
     borderColor: 'black',
     borderWidth: 1,
     alignItems: 'center',

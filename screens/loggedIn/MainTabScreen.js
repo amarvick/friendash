@@ -7,7 +7,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import FeedScreen from './FeedScreen';
 import CalendarScreen from './CalendarScreen';
 import ConnectionsScreen from './ConnectionsScreen';
+import ScheduledEventInfoScreen from './ScheduledEventInfoScreen';
 import SearchScreen from './SearchScreen';
+import ProfileScreen from './ProfileScreen';
 
 const FeedStack = createStackNavigator();
 const CalendarStack = createStackNavigator();
@@ -85,12 +87,14 @@ const FeedStackScreen = ({ navigation }) => (
 const CalendarStackScreen = ({ navigation }) => (
   <CalendarStack.Navigator screenOptions={headerProps}>
     <CalendarStack.Screen name="Calendar" component={CalendarScreen} options={StackOptions('Overview', navigation)} />
+    <CalendarStack.Screen name="ScheduledEventInfo" component={ScheduledEventInfoScreen} options={StackOptions('Overview', navigation)} />
   </CalendarStack.Navigator>
 );
 
 const ConnectionsStackScreen = ({ navigation }) => (
   <ConnectionsStack.Navigator screenOptions={headerProps}>
     <ConnectionsStack.Screen name="Connections" component={ConnectionsScreen} options={StackOptions('Overview', navigation)} />
+    <ConnectionsStack.Screen name="ConnectionProfile" component={ProfileScreen} options={StackOptions('Overview', navigation)} />
   </ConnectionsStack.Navigator>
 );
 

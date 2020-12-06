@@ -3,16 +3,15 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { windowWidth } from '../utils/Dimensions';
 import ContactButton from './ContactButton'
 
-const ContactListItem = ({ image, name }) => {
+const ContactListItem = ({ connection, goToChat }) => {
   return (
     <View style={styles.container}>
       <View style={styles.contactInfo}>
-        <Image style={styles.contactImage} source={image} />
-        <Text style={styles.text}>{name}</Text>
+        <Image style={styles.contactImage} source={connection.image} />
+        <Text style={styles.text}>{connection.name}</Text>
       </View>
       <View style={styles.contactOptions}>
-        <ContactButton buttonText='Chat'/>
-        <ContactButton buttonText='Profile'/>
+        <ContactButton buttonText='Chat' onPress={goToChat} />
       </View>
     </View>
   );
@@ -23,7 +22,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: windowWidth / 1.2,
     borderBottomWidth: 1,
-    borderColor: 'gray',
+    borderColor: '#EEF4FB',
     backgroundColor: '#fff',
     flexDirection: 'row',
     paddingBottom: 10,
