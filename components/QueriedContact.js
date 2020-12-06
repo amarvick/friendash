@@ -2,19 +2,18 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
 
-const QueriedContact = ({ eventName, date, time, location }) => {
+const QueriedContact = ({ name, type }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>{eventName}</Text>
+        <Text style={styles.headerText}>{name}</Text>
       </View>
       <View style={styles.body}>
         <View style={styles.bodyContent}>
           <Image style={styles.contactImage} source={require('../assets/running.png')} />
         </View>
         <View style={styles.bodyContent}>
-          <Text style={{...styles.bodyText, fontSize: 22}}>{location}</Text>
-          <Text style={styles.bodyText}>{date} • {time}</Text>
+          <Text style={{...styles.bodyText, fontSize: 22}}>Runner</Text>
         </View>
       </View>
     </View>
@@ -27,7 +26,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     width: windowWidth / 1.1,
-    height: windowHeight / 5,
+    height: windowHeight / 6,
     borderColor: '#65c2f5',
     borderRadius: 5,
     borderWidth: 1,
@@ -68,8 +67,8 @@ const styles = StyleSheet.create({
     paddingVertical: 20,  
   },
   contactImage: {
-    height: 100,
-    width: 100,
+    height: 75,
+    width: 75,
     borderColor: '#65c2f5',
     borderRadius: 100,
     borderWidth: 1,

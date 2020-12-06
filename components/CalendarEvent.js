@@ -2,18 +2,26 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
 
-const CalendarEvent = ({ eventName, date, time, location }) => {
+const CalendarEvent = ({ eventName, date, time, location, status }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>{eventName}</Text>
+    <View style={[
+      styles.container,
+      status == 'Cancelled' ? styles.cancelledContainer : styles.nonCancelledContainer
+    ]}>
+      <View style={[
+        styles.header,
+        status == 'Cancelled' ? styles.cancelledHeader : styles.nonCancelledHeader
+      ]}>
+        <Text style={styles.headerText}>
+          {`${status == 'Cancelled' ? '* CANCELLED *' : ''} ${eventName}`}
+        </Text>
       </View>
       <View style={styles.body}>
         <View style={styles.bodyContent}>
           <Image style={styles.contactImage} source={require('../assets/running.png')} />
         </View>
         <View style={styles.bodyContent}>
-          <Text style={{...styles.bodyText, fontSize: 22}}>{location}</Text>
+          <Text style={{ ...styles.bodyText, fontSize: 22 }}>{location}</Text>
           <Text style={styles.bodyText}>{date} • {time}</Text>
         </View>
       </View>
@@ -28,10 +36,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: windowWidth / 1.1,
     height: windowHeight / 5,
-    borderColor: '#65c2f5',
     borderRadius: 5,
     borderWidth: 1,
-    backgroundColor: '#0c81c0',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -41,6 +47,14 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     elevation: 3,
   },
+  nonCancelledContainer: {
+    borderColor: '#65c2f5',
+    backgroundColor: '#0c81c0',
+  },
+  cancelledContainer: {
+    borderColor: '#DBDBDB',
+    backgroundColor: '#DBDBDB',
+  },
   header: {
     justifyContent: 'center',
     backgroundColor: '#65c2f5',
@@ -49,6 +63,12 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 3,
     borderTopRightRadius: 3,
     margin: 0
+  },
+  nonCancelledHeader: {
+    backgroundColor: '#65c2f5',
+  },
+  cancelledHeader: {
+    backgroundColor: '#464646',
   },
   headerText: {
     fontWeight: 'bold',
@@ -65,7 +85,7 @@ const styles = StyleSheet.create({
   },
   bodyText: {
     top: 5,
-    paddingVertical: 20,  
+    paddingVertical: 20,
   },
   contactImage: {
     height: 100,

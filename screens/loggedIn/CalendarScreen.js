@@ -8,14 +8,15 @@ const CalendarScreen = (props) => {
   return props.user.calendar.length > 0 ? (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        {props.user.calendar.map(e => {
+        {props.user.calendar.map(scheduledEvent => {
           return (
-            <TouchableOpacity onPress={() => props.navigation.navigate('ScheduledEventInfo', { e })}>
+            <TouchableOpacity onPress={() => props.navigation.navigate('ScheduledEventInfo', { scheduledEvent })}>
               <CalendarEvent
-                eventName={e.eventName}
-                date={e.date}
-                time={e.time}
-                location={e.location}
+                eventName={scheduledEvent.eventName}
+                date={scheduledEvent.date}
+                time={scheduledEvent.time}
+                location={scheduledEvent.location}
+                status={scheduledEvent.status}
               />
             </TouchableOpacity>
           )

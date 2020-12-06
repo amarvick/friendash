@@ -1,16 +1,32 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import QueriedContact from '../../components/QueriedContact';
+import EmptyState from '../../components/EmptyState';
 
-const SearchScreen = ({ navigation }) => {
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => {}}
-      >
-        <Text style={styles.linkText}>Search Screen</Text>
-      </TouchableOpacity>
-    </View>
-  );
+const CalendarScreen = (props) => {
+  return props.user.queried.length > 0 ? (
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        {props.user.queried.map(user => {
+          return (
+            <TouchableOpacity>
+              <QueriedContact
+                name={user.name}
+                // type={q.type}
+              />
+            </TouchableOpacity>
+          )
+        })}
+      </ScrollView>
+    </SafeAreaView>
+  ) : (
+      <EmptyState
+        photo={require('../../assets/running.png')}
+        header="No new contacts to show"
+        subtitle="Check back again next week!"
+      />
+    );
 }
 
 const styles = StyleSheet.create({
@@ -19,14 +35,16 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
-  },
-  linkText: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginBottom: 10,
-    color: '#051d5f',
   },
 });
 
-export default SearchScreen;
+const mapStateToProps = (state) => {
+  return {
+    user: state.loginReducer.user || [],
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  {},
+)(CalendarScreen);

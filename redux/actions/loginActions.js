@@ -29,6 +29,7 @@ export const login = (loginInput) => {
       const user = {
         'name': 'Alex Marvick',
         'email': 'alex@friendash.com',
+        'location': 'Seattle, WA',
         'calendar': [
           {
             'id': 0,
@@ -36,6 +37,7 @@ export const login = (loginInput) => {
             'date': 'April 15, 2021',
             'time': '4:00PM PST',
             'location': 'Greenlake',
+            'status': 'Scheduled'
           },
           {
             'id': 1,
@@ -43,6 +45,7 @@ export const login = (loginInput) => {
             'date': 'April 15, 2021',
             'time': '4:00PM PST',
             'location': 'Sammamish',
+            'status': 'Scheduled'
           },
           {
             'id': 2,
@@ -50,6 +53,7 @@ export const login = (loginInput) => {
             'date': 'April 15, 2021',
             'time': '4:00PM PST',
             'location': 'Greenlake',
+            'status': 'Scheduled'
           },
           {
             'id': 3,
@@ -57,32 +61,38 @@ export const login = (loginInput) => {
             'date': 'April 15, 2021',
             'time': '4:00PM PST',
             'location': 'Ballard',
+            'status': 'Cancelled'
           }
         ],
         'connections': [
           {
             'id': 9,
             'name': 'Regina',
+            'location': 'Seattle, WA',
             'connected': true,
           },
           {
             'id': 10,
             'name': 'Michael',
+            'location': 'Seattle, WA',
             'connected': true,
           },
           {
             'id': 11,
             'name': 'Nick',
+            'location': 'Seattle, WA',
             'connected': true,
           },
           {
             'id': 12,
             'name': 'Gavin',
+            'location': 'Seattle, WA',
             'connected': true,
           },
           {
             'id': 13,
             'name': 'Lorenzo',
+            'location': 'Seattle, WA',
             'connected': true,
           }
         ],
@@ -90,21 +100,25 @@ export const login = (loginInput) => {
           {
             'id': 14,
             'name': 'Matt',
+            'location': 'San Carlos, CA',
             'connected': true,
           },
           {
             'id': 15,
             'name': 'Freddy',
+            'location': 'San Francisco, CA',
             'connected': true,
           },
           {
             'id': 16,
             'name': 'Miles',
+            'location': 'Seattle, WA',
             'connected': true,
           },
           {
             'id': 17,
             'name': 'Zack',
+            'location': 'Lakewood, WA',
             'connected': true,
           },
         ]
