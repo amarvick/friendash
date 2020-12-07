@@ -1,27 +1,39 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { SafeAreaView, ScrollView, View, Image, Text, StyleSheet } from 'react-native';
 
 import FormButton from '../../components/FormButton';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const ScheduledEventInfoScreen = (event) => {
-  let { name, location } = event.route.params.user;
+import AboutMeSection from '../../components/AboutMeSection';
 
+const ScheduledEventInfoScreen = (event) => {
+  let { name, location, aboutMe, pace, trainingFor } = event.route.params.user;
   return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Image style={styles.headerImage} source={require('../../assets/running.png')} />
-        <Text style={styles.name}>{name}</Text>
-        <View style={styles.headerDetails}>
-          <Icon name="md-locate" size={30} /><Text style={styles.headerDetailsText}>{location}</Text>
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <View style={styles.headerContainer}>
+          <Image style={styles.headerImage} source={require('../../assets/running.png')} />
+          <Text style={styles.name}>{name}</Text>
+          <View style={styles.headerDetails}>
+            <Icon name="md-locate" size={30} /><Text style={styles.headerDetailsText}>{location}</Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.bodyDetails}>
-        <Text>Detail 1</Text>
-        <Text>Detail 2</Text>
-        <Text>Detail 3</Text>
-      </View>
-    </View>
+        <View style={styles.bodyDetails}>
+          <AboutMeSection
+            headline="About Me"
+            text={aboutMe}
+          />
+          <AboutMeSection
+            headline="Preferred Pace"
+            text={pace}
+          />
+          <AboutMeSection
+            headline="I am training for..."
+            text={trainingFor}
+          />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -31,6 +43,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     alignItems: 'center',
+    padding: 0,
   },
   headerContainer: {
     backgroundColor: '#b0d6f5',
@@ -38,6 +51,7 @@ const styles = StyleSheet.create({
     height: '30%',
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 10,
   },
   headerImage: {
     height: 125,
