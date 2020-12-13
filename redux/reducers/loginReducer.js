@@ -15,16 +15,6 @@ export const loginReducer = (state = initialState, action) => {
         ...payload, // this is what we expect to get back from API call and login page input
         isLoggedIn: true, // we set this as true on login - but this is likely not needed
       };
-    case 'SET_LOGIN_USER_INFO': 
-      return {
-        ...state,
-        user: {
-          ...state.user,
-          aboutMe: payload.aboutMe,
-          pace: payload.pace,
-          trainingFor: payload.trainingFor,
-        },
-      };
     default:
       return state;
   }

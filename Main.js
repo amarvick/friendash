@@ -15,6 +15,7 @@ import SubscriptionScreen from './screens/loggedIn/SubscriptionScreen';
 
 import { LOGIN_ACTION_TYPES } from './redux/actionTypes/loginActionTypes';
 import { connect } from 'react-redux';
+import { getStorageDataOnLoad } from './redux/actions/loginActions';
 
 const Drawer = createDrawerNavigator();
 
@@ -30,7 +31,7 @@ const Main = (props) => {
       } catch (e) {
         console.log(e);
       }
-      dispatch({ type: 'SET_LOGIN_STATE', payload });
+      props.getStorageDataOnLoad(payload)
     }, 1000);
   }, []);
 
@@ -41,6 +42,7 @@ const Main = (props) => {
       </View>
     )
   }
+
   return (
     <NavigationContainer>
       {
@@ -64,9 +66,15 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getStorageDataOnLoad: (data) => dispatch(getStorageDataOnLoad(data))
+  }
+}
+
 const ConnectedMain = connect(
   mapStateToProps,
-  {}
+  mapDispatchToProps
 )(Main);
 
 export default ConnectedMain;

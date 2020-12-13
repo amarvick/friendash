@@ -4,7 +4,7 @@ import { SafeAreaView, ScrollView, View, Image, Text, StyleSheet } from 'react-n
 import FormButton from '../../components/FormButton';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
-import { update } from '../../redux/actions/loginActions';
+import { update } from '../../redux/actions/userActions';
 
 import AboutMeEditSection from '../../components/AboutMeEditSection';
 
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    user: state.loginReducer.user || [],
+    user: state.userReducer.user || [],
   }
 }
 

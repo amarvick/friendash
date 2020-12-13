@@ -35,7 +35,7 @@ const LoginScreen = ( props ) => {
         placeholderText="Email"
         iconType="mail"
         keyboardType="email-address"
-        autoCapitalize={false}
+        autoCapitalize="none"
         autoCorrect={false}
       />
       <FormInput

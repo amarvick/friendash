@@ -1,16 +1,22 @@
-import { LOGIN_ACTION_TYPES } from '../actionTypes/loginActionTypes';
-
 const initialState = {
-  user: '',
+  user: {},
 };
 
 export const userReducer = (state = initialState, action) => {
+  const payload = action.payload;
   switch (action.type) {
+    case 'SET_USER':
+      return {
+        user: action.payload
+      };
     case 'UPDATE_USER':
       return {
-        ...state,
-        ...action.payload, // this is what we expect to get back from API call and login page input
-        isLoggedIn: true, // we set this as true on login
+        user: {
+          ...state.user,
+          aboutMe: payload.aboutMe,
+          pace: payload.pace,
+          trainingFor: payload.trainingFor,
+        }
       };
     default:
       return state;

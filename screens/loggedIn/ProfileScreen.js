@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    userId: state.loginReducer.user.id || [],
+    userId: state.loginReducer.user || [],
   }
 }
 
