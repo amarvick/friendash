@@ -64,7 +64,7 @@ const ScheduledEventInfoScreen = (event) => {
       </View>
       { status != 'Scheduled' ? <Text>
         {statusMessage}
-      </Text> : null}
+      </Text> : null }
       <View style={styles.eventDetails}>
         <View style={styles.eventDetail}>
           <Icon name="md-calendar" size={30} /><Text style={styles.eventDetailText}>{date}</Text>

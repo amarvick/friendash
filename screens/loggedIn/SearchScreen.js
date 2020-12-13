@@ -8,9 +8,9 @@ const CalendarScreen = (props) => {
   return props.user.queried.length > 0 ? (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        {props.user.queried.map(user => {
+        {props.user.queried.map((user, i) => {
           return (
-            <TouchableOpacity>
+            <TouchableOpacity key={`queried-user-${i}`}>
               <QueriedContact
                 name={user.name}
                 // type={q.type}

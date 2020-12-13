@@ -70,18 +70,16 @@ const headerProps = {
   }
 }
 
-const StackOptions = (title, navigation) => {
-  return {
-    title,
-    headerRight: () => (
-      // here - put another one for scheduling events
-      <Icon.Button name="ios-menu" size={25} backgroundColor="#65c2f5" onPress={() => navigation.openDrawer()}></Icon.Button>
-    )
-  }
-}
+const StackOptions = (title, navigation) => ({
+  title,
+  headerRight: () => (
+    // here - put another one for scheduling events
+    <Icon.Button name="ios-menu" size={25} backgroundColor="#65c2f5" onPress={() => navigation.openDrawer()}></Icon.Button>
+  )
+})
 
 const headerLeft = (navigation, page) => (
-  <Icon.Button name="ios-arrow-back" size={25} backgroundColor="#65c2f5" onPress={() => navigation.goBack(page)}></Icon.Button>
+  <Icon.Button name="ios-arrow-back" size={25} backgroundColor="#65c2f5" onPress={() => navigation.navigate(page)}></Icon.Button>
 )
 
 const FeedStackScreen = ({ navigation }) => (
@@ -93,14 +91,20 @@ const FeedStackScreen = ({ navigation }) => (
 const CalendarStackScreen = ({ navigation }) => (
   <CalendarStack.Navigator screenOptions={headerProps}>
     <CalendarStack.Screen name="Calendar" component={CalendarScreen} options={StackOptions('Overview', navigation)} />
-    <CalendarStack.Screen name="ScheduledEventInfo" component={ScheduledEventInfoScreen} options={{ ...StackOptions('Overview', navigation), headerLeft: () => headerLeft(navigation, 'Calendar') }} />
+    <CalendarStack.Screen name="ScheduledEventInfo" component={ScheduledEventInfoScreen} options={{ 
+      ...StackOptions('Overview', navigation), 
+      headerLeft: () => headerLeft(navigation, 'Calendar') 
+    }} />
   </CalendarStack.Navigator>
 );
 
 const ConnectionsStackScreen = ({ navigation }) => (
   <ConnectionsStack.Navigator screenOptions={headerProps}>
     <ConnectionsStack.Screen name="Connections" component={ConnectionsScreen} options={StackOptions('Overview', navigation)} />
-    <ConnectionsStack.Screen name="ConnectionProfile" component={ProfileScreen} options={StackOptions('Overview', navigation)} />
+    <ConnectionsStack.Screen name="ConnectionProfile" component={ProfileScreen} options={{
+      ...StackOptions('Overview', navigation),
+      headerLeft: () => headerLeft(navigation, 'Connections') 
+    }} />
   </ConnectionsStack.Navigator>
 );
 

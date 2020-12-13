@@ -3,34 +3,43 @@ import { SafeAreaView, ScrollView, View, Image, Text, StyleSheet } from 'react-n
 
 import FormButton from '../../components/FormButton';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { connect } from 'react-redux';
 
 import AboutMeSection from '../../components/AboutMeSection';
 
-const ScheduledEventInfoScreen = (event) => {
-  let { name, location, aboutMe, pace, trainingFor } = event.route.params.user;
+const ProfileScreen = (props) => {
+  let user = props.route.params.user;
+  const editButton = user.id == props.userId ? (
+    <FormButton 
+      buttonText = "Edit Profile"
+      onPress={() => props.navigation.navigate('EditProfile')}
+    />
+  ) : null;
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.headerContainer}>
           <Image style={styles.headerImage} source={require('../../assets/running.png')} />
-          <Text style={styles.name}>{name}</Text>
+          <Text style={styles.name}>{user.name}</Text>
           <View style={styles.headerDetails}>
-            <Icon name="md-locate" size={30} /><Text style={styles.headerDetailsText}>{location}</Text>
+            <Icon name="md-locate" size={30} /><Text style={styles.headerDetailsText}>{user.location}</Text>
           </View>
         </View>
         <View style={styles.bodyDetails}>
           <AboutMeSection
             headline="About Me"
-            text={aboutMe}
+            text={user.aboutMe}
           />
           <AboutMeSection
             headline="Preferred Pace"
-            text={pace}
+            text={user.pace}
           />
           <AboutMeSection
             headline="I am training for..."
-            text={trainingFor}
+            text={user.trainingFor}
           />
+
+          {editButton}
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -80,4 +89,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ScheduledEventInfoScreen;
+const mapStateToProps = (state) => {
+  return {
+    userId: state.loginReducer.user.id || [],
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  {},
+)(ProfileScreen);

@@ -6,7 +6,7 @@ import FormInput from '../../components/FormInput';
 import { login } from '../../redux/actions/loginActions';
 import { connect } from 'react-redux';
 
-const LoginScreen = (props, { navigation }) => {
+const LoginScreen = ( props ) => {
   const [data, setData] = React.useState({
     email: '',
     password: '',
@@ -53,7 +53,7 @@ const LoginScreen = (props, { navigation }) => {
 
       <View style={{ marginBottom: 30 }}></View>
       <TouchableOpacity
-        onPress={() => navigation.navigate('ForgotPassword')}
+        onPress={() => props.navigation.navigate('ForgotPassword')}
       >
         <Text style={styles.linkText}>Forgot Password?</Text>
       </TouchableOpacity>
@@ -62,7 +62,7 @@ const LoginScreen = (props, { navigation }) => {
         <Text style={styles.text}>
           New User?
             <Text
-            onPress={() => navigation.navigate('Signup')}
+            onPress={() => props.navigation.navigate('Signup')}
             style={styles.linkText}> Create an account.
             </Text>
         </Text>

@@ -30,7 +30,7 @@ const Main = (props) => {
       } catch (e) {
         console.log(e);
       }
-      dispatch({ type: 'RETRIEVE_TOKEN', payload });
+      dispatch({ type: 'SET_LOGIN_STATE', payload });
     }, 1000);
   }, []);
 

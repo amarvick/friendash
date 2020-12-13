@@ -1,4 +1,3 @@
-import LOGIN_ACTION_TYPES from '../actionTypes/loginActionTypes';
 import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -22,11 +21,40 @@ const setLoginLocal = async (loginData) => {
   }
 };
 
+const setUserLocal = async (updatedUserData) => {
+  try {
+    await AsyncStorage.getItem('loginData')
+      .then(async loginData => {
+        const newData = {
+          ...loginData,
+          user: {
+            ...loginData.user,
+            aboutMe: updatedUserData.aboutMe,
+            pace: updatedUserData.pace,
+            trainingFor: updatedUserData.trainingFor
+          }
+        }
+
+        await AsyncStorage.setItem('loginData', JSON.stringify(newData))
+      });
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+const setUserState = (data) => {
+  return {
+    type: 'SET_LOGIN_USER_INFO',
+    payload: data.info,
+  }
+}
+
 export const login = (loginInput) => {
   const { email, password } = loginInput;
   return async (dispatch) => {
     if (email === userInfo.email && password === userInfo.password) {
       const user = {
+        'id': 16,
         'name': 'Alex Marvick',
         'email': 'alex@friendash.com',
         'location': 'Seattle, WA',
@@ -192,6 +220,19 @@ export const login = (loginInput) => {
       } catch (e) {
         Alert.alert('login failed, sorry');
       }
+    }
+  };
+};
+
+export const update = (data) => {
+  return async (dispatch) => {
+    try {
+      // setLoginLocal(data);
+      dispatch(setUserState(data));
+      Alert.alert('saved');
+    } catch (e) {
+      // Alert.alert('logout failed, sorry');
+      Alert.alert(JSON.stringify(e));
     }
   };
 };

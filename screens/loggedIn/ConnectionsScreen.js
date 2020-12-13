@@ -8,9 +8,9 @@ const ConnectionsScreen = (props) => {
   return props.user.connections.length > 0 ? (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        {props.user.connections.map(user => {
+        {props.user.connections.map((user, i) => {
           return (
-            <TouchableOpacity onPress={() => props.navigation.navigate('ConnectionProfile', { user })}>
+            <TouchableOpacity key={`connection-${i}`} onPress={() => props.navigation.navigate('ConnectionProfile', { user })}>
               <ContactListItem
                 image={require('../../assets/running.png')}
                 connection={user}

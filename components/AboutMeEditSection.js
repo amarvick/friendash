@@ -1,12 +1,19 @@
 import React from 'react';
-import { FlatList, View, Text, StyleSheet } from 'react-native';
-import { windowHeight, windowWidth } from '../utils/Dimensions';
+import { FlatList, View, Text, TextInput, StyleSheet } from 'react-native';
+import { windowWidth } from '../utils/Dimensions';
 
-const AboutMeSection = ({ headline, text }) => {
+const AboutMeEditSection = ({ headline, text, ...props }) => {
   const bodyText = Array.isArray(text) ? <FlatList
     data={text}
     renderItem={({ item }) => <Text style={styles.item}>- {item}</Text>} />
-    : (<Text style={styles.bodyText}>{text}</Text>)
+    : (
+      <TextInput
+        value={text}
+        style={styles.bodyText}
+        numberOfLines={10}
+        {...props}
+      />
+    );
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -56,8 +63,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   bodyText: {
-    paddingVertical: 10,
   },
 });
 
-export default AboutMeSection;
+export default AboutMeEditSection;
