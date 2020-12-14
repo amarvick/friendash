@@ -9,7 +9,7 @@ export const userReducer = (state = initialState, action) => {
       return {
         user: action.payload
       };
-    case 'UPDATE_USER':
+    case 'UPDATE_ABOUT_USER':
       return {
         user: {
           ...state.user,

@@ -27,18 +27,25 @@ const ProfileScreen = (props) => {
         </View>
         <View style={styles.bodyDetails}>
           <AboutMeSection
-            headline="About Me"
+            headline="ABOUT ME"
             text={user.aboutMe}
           />
           <AboutMeSection
-            headline="Preferred Pace"
+            headline="PACE"
             text={user.pace}
           />
           <AboutMeSection
-            headline="I am training for..."
+            headline="I RUN..."
+            text={user.runFrequency}
+          />
+          <AboutMeSection
+            headline="FAVORITE PLACES TO RUN"
+            text={user.preferredLocations}
+          />
+          <AboutMeSection
+            headline="I AM TRAINING FOR..."
             text={user.trainingFor}
           />
-
           {editButton}
         </View>
       </ScrollView>
@@ -50,17 +57,12 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     flex: 1,
-    justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 0,
+    fontFamily: 'Helvetica',
   },
   headerContainer: {
     backgroundColor: '#b0d6f5',
-    width: '100%',
-    height: '30%',
-    justifyContent: 'center',
     alignItems: 'center',
-    padding: 10,
   },
   headerImage: {
     height: 125,
@@ -74,7 +76,6 @@ const styles = StyleSheet.create({
   },
   headerDetails: {
     fontSize: 22,
-    justifyContent: 'flex-start',
     alignItems: 'center',
     flexDirection: 'row',
     marginVertical: 10,
@@ -84,8 +85,8 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   bodyDetails: {
-    // justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 10,
   }
 });
 

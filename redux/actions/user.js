@@ -5,6 +5,10 @@ export const user = {
   'location': 'Seattle, WA',
   'aboutMe': 'My name is Alex and I\'m the founder of this app. Looking to meet runners in the area!',
   'pace': '7:30-8:30 min/mile',
+  'runFrequency': 'Daily',
+  'preferredLocations': [
+    'Queen Anne, Seattle'
+  ],
   'trainingFor': [
     'Fun',
     'Mid-distance races (400m - 3200m)',

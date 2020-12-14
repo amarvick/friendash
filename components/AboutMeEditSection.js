@@ -1,17 +1,23 @@
 import React from 'react';
 import { FlatList, View, Text, TextInput, StyleSheet } from 'react-native';
 import { windowWidth } from '../utils/Dimensions';
+import FormInput from './FormInput';
 
-const AboutMeEditSection = ({ headline, text, ...props }) => {
-  const bodyText = Array.isArray(text) ? <FlatList
-    data={text}
-    renderItem={({ item }) => <Text style={styles.item}>- {item}</Text>} />
-    : (
-      <TextInput
-        value={text}
-        style={styles.bodyText}
-        numberOfLines={10}
-        {...props}
+const AboutMeEditSection = ({ headline, text, numberOfLines, iconType, ...props }) => {
+  const bodyText = Array.isArray(text) ? (
+    <FlatList
+      data={text}
+      renderItem={({ item }) => <Text style={styles.item}>- {item}</Text>} />
+  ) : (
+      <FormInput
+        labelValue={text}
+        onChangeText={props.onChangeText}
+        placeholderText={headline}
+        iconType={iconType}
+        numberOfLines={numberOfLines}
+        keyboardType="text"
+        autoCapitalize="none"
+        autoCorrect={false}
       />
     );
   return (
@@ -28,15 +34,15 @@ const AboutMeEditSection = ({ headline, text, ...props }) => {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     alignItems: 'center',
     alignSelf: 'flex-start',
     marginTop: 10,
     marginBottom: 10,
-    width: windowWidth / 1.1,
-    borderColor: '#65c2f5',
+    width: windowWidth,
     borderRadius: 5,
-    borderWidth: 1,
     backgroundColor: 'white',
+    borderColor: 'black',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -61,8 +67,14 @@ const styles = StyleSheet.create({
   body: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    // width: '90%',
   },
   bodyText: {
+    padding: 10,
+    fontSize: 16,
+    color: '#333',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

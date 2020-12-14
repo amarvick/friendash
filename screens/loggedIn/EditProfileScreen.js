@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, View, Image, Text, StyleSheet } from 'react-native';
+import { SafeAreaView, ScrollView, View, Image, Text, TextInput, StyleSheet } from 'react-native';
 
 import FormButton from '../../components/FormButton';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -48,9 +48,10 @@ const EditProfileScreen = (props) => {
           </View>
         </View>
         <View style={styles.bodyDetails}>
-          <AboutMeEditSection
-            headline="About Me"
-            text={data.aboutMe}
+          <TextInput 
+            value={data.aboutMe}
+            style={styles.aboutInput}
+            multiline={true}
             onChangeText={aboutMe => onChangeAboutMe(aboutMe)}
           />
           <AboutMeEditSection
@@ -113,6 +114,13 @@ const styles = StyleSheet.create({
   },
   bodyDetails: {
     alignItems: 'center',
+  },
+  aboutInput: {
+    height: 200,
+    borderWidth: 1,
+    borderRadius: 10,
+    padding: 10,
+    margin: 10,
   }
 });
 

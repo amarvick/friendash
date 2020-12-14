@@ -17,7 +17,6 @@ const FormInput = ({ labelValue, placeholderText, iconType, ...props }) => {
       <TextInput
         value={labelValue}
         style={styles.input}
-        numberOfLines={1}
         placeholder={placeholderText}
         placeholderTextColor="#666"
         {...props}

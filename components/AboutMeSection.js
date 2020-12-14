@@ -3,10 +3,14 @@ import { FlatList, View, Text, StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
 
 const AboutMeSection = ({ headline, text }) => {
-  const bodyText = Array.isArray(text) ? <FlatList
-    data={text}
-    renderItem={({ item }) => <Text style={styles.item}>- {item}</Text>} />
-    : (<Text style={styles.bodyText}>{text}</Text>)
+  const bodyText = text != null ? 
+    Array.isArray(text) 
+      ? <FlatList
+          data={text}
+          renderItem={({ item }) => <Text style={styles.item}>• {item}</Text>} 
+        />
+      : <Text style={styles.bodyText}>{text}</Text> 
+    : <Text style={styles.bodyText}>Nothing Listed</Text>;
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -25,38 +29,27 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     marginTop: 10,
     marginBottom: 10,
-    width: windowWidth / 1.1,
-    borderColor: '#65c2f5',
-    borderRadius: 5,
-    borderWidth: 1,
-    backgroundColor: 'white',
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.4,
-    shadowRadius: 5,
-    elevation: 3,
   },
   header: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    alignSelf: 'flex-start',
     color: 'black',
     width: '100%',
-    padding: 10,
   },
   headerText: {
     fontWeight: 'bold',
     color: 'black',
-    fontSize: 18,
+    fontSize: 20,
   },
   body: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    alignSelf: 'flex-start',
+    width: '100%',
+  },
+  item: {
+    padding: 10,
   },
   bodyText: {
     paddingVertical: 10,
+    fontSize: 16,
   },
 });
 

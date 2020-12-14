@@ -26,7 +26,6 @@ const setLoginLocal = async (loginData) => {
 export const login = (loginInput) => {
   const { email, password } = loginInput;
   return async (dispatch) => {
-    // fetch user
     if (email === userInfo.email && password === userInfo.password) {
       try {
         const payload = {

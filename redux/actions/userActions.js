@@ -9,7 +9,7 @@ export const setUserState = (data) => {
 
 const updateUserState = (data) => {
   return {
-    type: 'UPDATE_USER',
+    type: 'UPDATE_ABOUT_USER',
     payload: data,
   }
 }
