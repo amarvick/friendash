@@ -14,7 +14,6 @@ const updateUserState = (data) => {
   }
 }
 
-
 export const update = (data) => {
   return async (dispatch) => {
     try {

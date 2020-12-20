@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { update } from '../../redux/actions/userActions';
 
 import AboutMeEditSection from '../../components/AboutMeEditSection';
+import AddItemInput from '../../components/AddItemInput';
 import ProfileHeader from '../../components/ProfileHeader';
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -17,6 +18,8 @@ const EditProfileScreen = (props) => {
     aboutMe: user.aboutMe ?? '',
     pace: user.pace ?? '',
     runFrequency: user.runFrequency ?? '',
+    preferredLocations: user.preferredLocations ?? [],
+    preferredLocationInput: '',
     trainingFor: user.trainingFor ?? [],
     trainingForOptions: {
       'Fun': user.trainingFor.includes('Fun'),
@@ -47,6 +50,32 @@ const EditProfileScreen = (props) => {
       ...data,
       runFrequency,
     });
+  }
+
+  const onChangePreferredLocationInput = (preferredLocationInput) => {
+    setData({
+      ...data,
+      preferredLocationInput,
+    });
+  }
+
+  const addPreferredLocationInput = () => {
+    if (data.preferredLocationInput != '') {
+      setData({
+        ...data,
+        preferredLocations: [...data.preferredLocations, data.preferredLocationInput],
+        preferredLocationInput: '',
+      })
+    }
+  }
+
+  const removePreferredLocationInput = (index) => {
+    let preferredLocations = data.preferredLocations;
+    preferredLocations.splice(index, 1);
+    setData({
+      ...data,
+      preferredLocations,
+    })
   }
 
   const onChangeTrainingFor = (trainingForItem) => {
@@ -130,15 +159,39 @@ const EditProfileScreen = (props) => {
               />
             )}
           />
-
+          <AboutMeEditSection
+            headline="FAVORITE PLACES TO RUN..."
+            component={
+              <View>
+                <AddItemInput
+                  labelValue={data.preferredLocationInput}
+                  placeholderText="Insert location..."
+                  onChangeText={input => onChangePreferredLocationInput(input)}
+                  iconType="md-add"
+                  onIconClick={() => addPreferredLocationInput()}
+                />
+                {data.preferredLocations.map((t, i) => {
+                  return (
+                    <AddItemInput
+                      key={`item-${i}`}
+                      labelValue={t}
+                      editable={false}
+                      iconType="md-close"
+                      onIconClick={() => removePreferredLocationInput(i)}
+                    />
+                  )
+                })}
+              </View>
+            }
+          />
           <AboutMeEditSection
             headline="I'M TRAINING FOR..."
             component={Object.keys(data.trainingForOptions).map((t, i) => {
               return (
                 <Text
                   key={`item-${i}`}
-                  style={[styles.trainingFor, { 
-                    backgroundColor: data.trainingForOptions[t] ? '#b0d6f5' : 'white' 
+                  style={[styles.trainingFor, {
+                    backgroundColor: data.trainingForOptions[t] ? '#b0d6f5' : 'white'
                   }]}
                   onPress={() => onChangeTrainingFor(t)}
                 >
@@ -147,16 +200,16 @@ const EditProfileScreen = (props) => {
               )
             })}
           />
-
           <FormButton
             buttonText="Save"
-            onPress={() => props.update({ 
+            onPress={() => props.update({
               'info': {
                 aboutMe: data.aboutMe,
                 pace: data.pace,
                 runFrequency: data.runFrequency,
+                preferredLocations: data.preferredLocations,
                 trainingFor: data.trainingFor,
-              } 
+              }
             })}
           />
         </View>
@@ -181,6 +234,14 @@ const styles = StyleSheet.create({
     borderColor: '#DBDBDB',
     padding: 10,
   },
+  placesToRun: {
+    borderRadius: 10,
+    padding: 10,
+    borderWidth: 1,
+    // marginVertical: 5,
+    width: '100%',
+    borderColor: '#DBDBDB',
+  },
   trainingFor: {
     borderRadius: 10,
     padding: 10,
@@ -192,18 +253,18 @@ const styles = StyleSheet.create({
 });
 
 const pickerStyle = {
-	inputIOS: {
+  inputIOS: {
     color: 'black',
     borderRadius: 10,
     borderColor: '#DBDBDB',
     borderWidth: 1,
-		paddingTop: 13,
-		paddingHorizontal: 10,
-		paddingBottom: 12,
-	},
-	inputAndroid: {
-		color: 'black',
-	},
+    paddingTop: 13,
+    paddingHorizontal: 10,
+    paddingBottom: 12,
+  },
+  inputAndroid: {
+    color: 'black',
+  },
   placeholderColor: 'gray',
 };
 

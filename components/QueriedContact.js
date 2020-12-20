@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
 
-const QueriedContact = ({ name, type }) => {
+const QueriedContact = ({name, location, distance, type}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -13,7 +14,9 @@ const QueriedContact = ({ name, type }) => {
           <Image style={styles.contactImage} source={require('../assets/running.png')} />
         </View>
         <View style={styles.bodyContent}>
-          <Text style={{...styles.bodyText, fontSize: 22}}>Runner</Text>
+          <Text style={{fontSize: 22, marginBottom: 8}}>{type}</Text>
+          <Text style={styles.bodyText}>{location}</Text>
+          <Text style={styles.bodyText}>{`${distance} miles away`}</Text>
         </View>
       </View>
     </View>
@@ -56,15 +59,15 @@ const styles = StyleSheet.create({
   },
   body: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    width: '100%',
+    top: 10,
   },
   bodyContent: {
-    justifyContent: 'center',
-    paddingHorizontal: 14,
+    paddingHorizontal: 25,
   },
   bodyText: {
-    top: 5,
-    paddingVertical: 20,  
+    fontSize: 16,
+    alignItems: 'center',
   },
   contactImage: {
     height: 75,

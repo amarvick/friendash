@@ -15,6 +15,8 @@ export const userReducer = (state = initialState, action) => {
           ...state.user,
           aboutMe: payload.aboutMe,
           pace: payload.pace,
+          runFrequency: payload.runFrequency,
+          preferredLocations: payload.preferredLocations,
           trainingFor: payload.trainingFor,
         }
       };

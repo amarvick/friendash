@@ -1,19 +1,24 @@
 import React from 'react';
 import { TouchableOpacity, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
+import { getDistance } from '../../utils/DistanceCalculator';
 import QueriedContact from '../../components/QueriedContact';
 import EmptyState from '../../components/EmptyState';
 
-const CalendarScreen = (props) => {
+const SearchScreen = (props) => {
+  const userCoordinates = props.user.coordinates;
   return props.user.queried.length > 0 ? (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {props.user.queried.map((user, i) => {
+          const distance = getDistance(userCoordinates, user.coordinates);
           return (
             <TouchableOpacity key={`queried-user-${i}`}>
               <QueriedContact
                 name={user.name}
-                // type={q.type}
+                location={user.location}
+                distance={distance}
+                type='Runner'
               />
             </TouchableOpacity>
           )
@@ -47,4 +52,4 @@ const mapStateToProps = (state) => {
 export default connect(
   mapStateToProps,
   {},
-)(CalendarScreen);
+)(SearchScreen);

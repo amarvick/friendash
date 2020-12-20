@@ -2,7 +2,6 @@ import React from 'react';
 import { SafeAreaView, ScrollView, View, Image, Text, StyleSheet } from 'react-native';
 
 import FormButton from '../../components/FormButton';
-import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
 import AboutMeSection from '../../components/AboutMeSection';
 import ProfileHeader from '../../components/ProfileHeader';
