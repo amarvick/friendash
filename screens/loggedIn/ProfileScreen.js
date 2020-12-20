@@ -4,11 +4,11 @@ import { SafeAreaView, ScrollView, View, Image, Text, StyleSheet } from 'react-n
 import FormButton from '../../components/FormButton';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { connect } from 'react-redux';
-
 import AboutMeSection from '../../components/AboutMeSection';
+import ProfileHeader from '../../components/ProfileHeader';
 
 const ProfileScreen = (props) => {
-  let user = props.route.params.user;
+  const user = props.route.params.user;
   const editButton = user.id == props.userId ? (
     <FormButton 
       buttonText = "Edit Profile"
@@ -18,13 +18,11 @@ const ProfileScreen = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <View style={styles.headerContainer}>
-          <Image style={styles.headerImage} source={require('../../assets/running.png')} />
-          <Text style={styles.name}>{user.name}</Text>
-          <View style={styles.headerDetails}>
-            <Icon name="md-locate" size={30} /><Text style={styles.headerDetailsText}>{user.location}</Text>
-          </View>
-        </View>
+        <ProfileHeader
+          name={user.name}
+          location={user.location}
+          isEditable={false}
+        />
         <View style={styles.bodyDetails}>
           <AboutMeSection
             headline="ABOUT ME"
@@ -57,36 +55,10 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     flex: 1,
-    alignItems: 'center',
-    fontFamily: 'Helvetica',
-  },
-  headerContainer: {
-    backgroundColor: '#b0d6f5',
-    alignItems: 'center',
-  },
-  headerImage: {
-    height: 125,
-    width: 125,
-    borderRadius: 100,
-    borderWidth: 1,
-  },
-  name: {
-    fontSize: 28,
-    fontWeight: 'bold',
-  },
-  headerDetails: {
-    fontSize: 22,
-    alignItems: 'center',
-    flexDirection: 'row',
-    marginVertical: 10,
-  },
-  headerDetailsText: {
-    fontSize: 18,
-    marginLeft: 10,
   },
   bodyDetails: {
     alignItems: 'center',
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
   }
 });
 

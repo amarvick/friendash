@@ -19,7 +19,7 @@ export const update = (data) => {
   return async (dispatch) => {
     try {
       dispatch(updateUserState(data.info));
-      Alert.alert('saved');
+      Alert.alert('Saved!');
     } catch (e) {
       Alert.alert('updating failed: ' + JSON.stringify(e));
     }

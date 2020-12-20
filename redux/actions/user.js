@@ -61,9 +61,13 @@ export const user = {
       'name': 'Regina',
       'location': 'Seattle, WA',
       'aboutMe': 'My name is Regina and I am a new runner. I hope to meet new runners who are up for a good time!',
-      'pace': '10 min/mile',
+      'pace': '8:00 min/mile',
+      'runFrequency': '0-3 times per week',
+      'preferredLocations': [
+        'Queen Anne, Seattle'
+      ],
       'trainingFor': [
-        'Fun'
+        'Fun',
       ],
       'connected': true,
     },
@@ -72,9 +76,13 @@ export const user = {
       'name': 'Michael',
       'location': 'Seattle, WA',
       'aboutMe': 'My name is Michael and I am a new runner. I hope to meet new runners who are up for a good time!',
-      'pace': '10 min/mile',
+      'pace': '8:00 min/mile',
+      'runFrequency': '0-3 times per week',
+      'preferredLocations': [
+        'Capitol Hill, Seattle'
+      ],
       'trainingFor': [
-        'Fun'
+        'Fun',
       ],
       'connected': true,
     },
@@ -83,9 +91,13 @@ export const user = {
       'name': 'Nick',
       'location': 'Seattle, WA',
       'aboutMe': 'My name is Nick and I am a new runner. I hope to meet new runners who are up for a good time!',
-      'pace': '10 min/mile',
+      'pace': '8:00 min/mile',
+      'runFrequency': '0-3 times per week',
+      'preferredLocations': [
+        'Sammamish, WA'
+      ],
       'trainingFor': [
-        'Fun'
+        'Fun',
       ],
       'connected': true,
     },
@@ -94,9 +106,13 @@ export const user = {
       'name': 'Gavin',
       'location': 'Seattle, WA',
       'aboutMe': 'My name is Gavin and I am a new runner. I hope to meet new runners who are up for a good time!',
-      'pace': '10 min/mile',
+      'pace': '8:00 min/mile',
+      'runFrequency': '0-3 times per week',
+      'preferredLocations': [
+        'Greenlake, Seattle'
+      ],
       'trainingFor': [
-        'Fun'
+        'Fun',
       ],
       'connected': true,
     },
@@ -105,9 +121,13 @@ export const user = {
       'name': 'Lorenzo',
       'location': 'Seattle, WA',
       'aboutMe': 'My name is Lorenzo and I am a new runner. I hope to meet new runners who are up for a good time!',
-      'pace': '10 min/mile',
+      'pace': '8:00 min/mile',
+      'runFrequency': '0-3 times per week',
+      'preferredLocations': [
+        'Magnolia, Seattle'
+      ],
       'trainingFor': [
-        'Fun'
+        'Fun',
       ],
       'connected': true,
     }
@@ -118,9 +138,13 @@ export const user = {
       'name': 'Matt',
       'location': 'San Carlos, CA',
       'aboutMe': 'My name is Matt and I am a new runner. I hope to meet new runners who are up for a good time!',
-      'pace': '10 min/mile',
+      'pace': '6:00 min/mile',
+      'runFrequency': 'Daily',
+      'preferredLocations': [
+        'Stanford University'
+      ],
       'trainingFor': [
-        'Fun'
+        'Marathon',
       ],
       'connected': false,
     },
@@ -129,9 +153,13 @@ export const user = {
       'name': 'Freddy',
       'location': 'San Francisco, CA',
       'aboutMe': 'My name is Freddy and I am a new runner. I hope to meet new runners who are up for a good time!',
-      'pace': '10 min/mile',
+      'pace': '8:00 min/mile',
+      'runFrequency': '0-3 times per week',
+      'preferredLocations': [
+        'Marin County'
+      ],
       'trainingFor': [
-        'Fun'
+        'Fun',
       ],
       'connected': false,
     },
@@ -140,9 +168,13 @@ export const user = {
       'name': 'Miles',
       'location': 'Seattle, WA',
       'aboutMe': 'My name is Miles and I am a new runner. I hope to meet new runners who are up for a good time!',
-      'pace': '10 min/mile',
+      'pace': '8:00 min/mile',
+      'runFrequency': '0-3 times per week',
+      'preferredLocations': [
+        'Greenlake, Seattle'
+      ],
       'trainingFor': [
-        'Fun'
+        'Fun',
       ],
       'connected': false,
     },
@@ -151,9 +183,13 @@ export const user = {
       'name': 'Zack',
       'location': 'Lakewood, WA',
       'aboutMe': 'My name is Zack and I am a new runner. I hope to meet new runners who are up for a good time!',
-      'pace': '10 min/mile',
+      'pace': '10:00 min/mile',
+      'runFrequency': '0-3 times per week',
+      'preferredLocations': [
+        'Brokewood, WA'
+      ],
       'trainingFor': [
-        'Fun'
+        'Fun',
       ],
       'connected': false,
     },

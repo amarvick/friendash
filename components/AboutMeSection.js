@@ -3,7 +3,7 @@ import { FlatList, View, Text, StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
 
 const AboutMeSection = ({ headline, text }) => {
-  const bodyText = text != null ? 
+  const bodyText = text.length > 0 ? 
     Array.isArray(text) 
       ? <FlatList
           data={text}
