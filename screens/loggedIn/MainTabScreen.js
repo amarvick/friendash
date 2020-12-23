@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, StyleSheet } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 
@@ -8,6 +9,7 @@ import FeedScreen from './FeedScreen';
 import CalendarScreen from './CalendarScreen';
 import ConnectionsScreen from './ConnectionsScreen';
 import ScheduledEventInfoScreen from './ScheduledEventInfoScreen';
+import ModifyEventScreen from './ModifyEventScreen';
 import SearchScreen from './SearchScreen';
 import ProfileScreen from './ProfileScreen';
 
@@ -73,8 +75,10 @@ const headerProps = {
 const StackOptions = (title, navigation) => ({
   title,
   headerRight: () => (
-    // here - put another one for scheduling events
-    <Icon.Button name="ios-menu" size={25} backgroundColor="#65c2f5" onPress={() => navigation.openDrawer()}></Icon.Button>
+    <View style={styles.headerRightStyle}>
+      <Icon.Button name="md-create" size={25} backgroundColor="#65c2f5" onPress={() => navigation.navigate('ModifyEventScreen')}></Icon.Button>
+      <Icon.Button name="md-menu" size={25} backgroundColor="#65c2f5" onPress={() => navigation.openDrawer()}></Icon.Button>
+    </View>
   )
 })
 
@@ -91,10 +95,11 @@ const FeedStackScreen = ({ navigation }) => (
 const CalendarStackScreen = ({ navigation }) => (
   <CalendarStack.Navigator screenOptions={headerProps}>
     <CalendarStack.Screen name="Calendar" component={CalendarScreen} options={StackOptions('Overview', navigation)} />
-    <CalendarStack.Screen name="ScheduledEventInfo" component={ScheduledEventInfoScreen} options={{ 
-      ...StackOptions('Overview', navigation), 
-      headerLeft: () => headerLeft(navigation, 'Calendar') 
+    <CalendarStack.Screen name="ScheduledEventInfo" component={ScheduledEventInfoScreen} options={{
+      ...StackOptions('Overview', navigation),
+      headerLeft: () => headerLeft(navigation, 'Calendar')
     }} />
+    <CalendarStack.Screen name="EditEvent" component={ModifyEventScreen} />
   </CalendarStack.Navigator>
 );
 
@@ -103,7 +108,7 @@ const ConnectionsStackScreen = ({ navigation }) => (
     <ConnectionsStack.Screen name="Connections" component={ConnectionsScreen} options={StackOptions('Overview', navigation)} />
     <ConnectionsStack.Screen name="ConnectionProfile" component={ProfileScreen} options={{
       ...StackOptions('Overview', navigation),
-      headerLeft: () => headerLeft(navigation, 'Connections') 
+      headerLeft: () => headerLeft(navigation, 'Connections')
     }} />
   </ConnectionsStack.Navigator>
 );
@@ -113,3 +118,9 @@ const SearchStackScreen = ({ navigation }) => (
     <SearchStack.Screen name="Search" component={SearchScreen} options={StackOptions('Overview', navigation)} />
   </SearchStack.Navigator>
 );
+
+const styles = StyleSheet.create({
+  headerRightStyle: {
+    flexDirection: 'row',
+  },
+});

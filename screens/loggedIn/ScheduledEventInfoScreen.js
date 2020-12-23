@@ -4,81 +4,44 @@ import { View, Text, StyleSheet } from 'react-native';
 import FormButton from '../../components/FormButton';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const ScheduledEventInfoScreen = (event) => {
-  let { id, eventName, date, time, location, status } = event.route.params.scheduledEvent;
+const ScheduledEventInfoScreen = (props) => {
+  let eventDetails = props.route.params.scheduledEvent;
   const cancelEvent = () => {
     alert("Are you sure you want to cancel? This cannot be undone. Please make sure your party knows you plan to cancel.")
-    // change on back end
-    status = 'Cancelled';
-  }
-
-  const [data, setData] = React.useState({
-    isEditing: false,
-    eventName,
-    date,
-    time,
-    location
-  });
-
-  const onChangeEventName = name => {
-    setData({
-      ...data,
-      name,
-    });
-  }
-
-  const onChangeEventDate = date => {
-    setData({
-      ...data,
-      date,
-    });
-  }
-
-  const onChangeEventTime = time => {
-    setData({
-      ...data,
-      time,
-    });
-  }
-
-  const onChangeEventLocation = location => {
-    setData({
-      ...data,
-      location,
-    });
+    // scheduledEvent.status = 'Cancelled';
   }
 
   let statusMessage = '';
-  if (status == 'Cancelled') {
+  if (eventDetails.status == 'Cancelled') {
     statusMessage = 'This event has been cancelled';
-  } else if (status == 'Pending') {
+  } else if (eventDetails.status == 'Pending') {
     statusMessage = 'Awaiting for other party to accept';
-  } else if (status == 'Complete') {
+  } else if (eventDetails.status == 'Complete') {
     statusMessage = 'This is a past event';
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.eventTitle}>{eventName}</Text>
+        <Text style={styles.eventTitle}>{eventDetails.eventName}</Text>
       </View>
-      { status != 'Scheduled' ? <Text>
+      { eventDetails.status != 'Scheduled' ? <Text>
         {statusMessage}
       </Text> : null }
       <View style={styles.eventDetails}>
         <View style={styles.eventDetail}>
-          <Icon name="md-calendar" size={30} /><Text style={styles.eventDetailText}>{date}</Text>
+          <Icon name="md-calendar" size={30} /><Text style={styles.eventDetailText}>{eventDetails.date}</Text>
         </View>
         <View style={styles.eventDetail}>
-          <Icon name="md-clock" size={30} /><Text style={styles.eventDetailText}>{time}</Text>
+          <Icon name="md-clock" size={30} /><Text style={styles.eventDetailText}>{eventDetails.time}</Text>
         </View>
         <View style={styles.eventDetail}>
-          <Icon name="md-locate" size={30} /><Text style={styles.eventDetailText}>{location}</Text>
+          <Icon name="md-locate" size={30} /><Text style={styles.eventDetailText}>{eventDetails.location}</Text>
         </View>
       </View>
-      {status != 'Cancelled' ? (
+      {eventDetails.status != 'Cancelled' ? (
         <View style={styles.formButtons}>
-          <FormButton buttonText="Edit Event" onPress={() => alert('Editing event details')} />
+          <FormButton buttonText="Edit Event" onPress={() => props.navigation.navigate('EditEvent', { eventDetails })} />
           <FormButton buttonText="Cancel Event" onPress={cancelEvent} />
         </View>
       ) : null}
