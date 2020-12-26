@@ -33,7 +33,7 @@ const LoginScreen = ( props ) => {
         labelValue={data.email}
         onChangeText={email => onChangeEmail(email)}
         placeholderText="Email"
-        iconType="mail"
+        iconType="md-mail"
         keyboardType="email-address"
         autoCapitalize="none"
         autoCorrect={false}
@@ -41,7 +41,7 @@ const LoginScreen = ( props ) => {
       <FormInput
         labelValue={data.password}
         placeholderText="Password"
-        iconType="lock"
+        iconType="md-lock"
         secureTextEntry={true}
         onChangeText={password => onChangePassword(password)}
       />

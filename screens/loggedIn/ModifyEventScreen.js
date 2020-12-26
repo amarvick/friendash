@@ -45,6 +45,36 @@ const ModifyEventScreen = (props) => {
     });
   }
 
+  const onCheckErrors = () => {
+    if (data.eventName == '') {
+      alert('Please insert a name')
+      return true;
+    } else if (data.date == '') {
+      alert('Please insert a date')
+      return true;
+    } else if (data.time == '') {
+      alert('Please insert a time')
+      return true;
+    } else if (data.location == '') {
+      alert('Please insert a location')
+      return true;
+    }
+
+    return false;
+  }
+
+  const onEditEvent = () => {
+    if (!onCheckErrors()) {
+      alert('editing event');
+    }
+  }
+
+  const onAddEvent = () => {
+    if (!onCheckErrors) {
+      alert('adding event');
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -113,6 +143,11 @@ const ModifyEventScreen = (props) => {
 
         <FormButton
           buttonText="Save"
+          onPress={
+            eventDetails != {} ? 
+              () => onEditEvent() :
+              () => onAddEvent()
+          }
         />
       </View>
     </View>
@@ -179,4 +214,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ModifyEventScreen;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    updateCalendarEvent: (info) => dispatch(updateCalendarEvent(info))
+  }
+}
+
+export default connect(
+  {},
+  mapDispatchToProps,
+)(ModifyEventScreen);

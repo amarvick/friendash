@@ -1,11 +1,26 @@
 import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
-import { user } from './user';
+
+import { user } from '../data_TEMP/user';
+import { calendar_user } from '../data_TEMP/calendar_user';
+import { calendar } from '../data_TEMP/calendar';
+
 import { setUserState } from './userActions';
+import { setCalendarEventState } from './calendarActions';
 
 const userInfo = {
   email: 'alex@friendash.com',
   password: 'password',
+}
+
+// Temporary - will remove this once backend is set up
+const getEvents = id => {
+  const calendarUserEventsIDs = calendar_user.map(cu => {
+    if (cu.userId == id) {
+      return cu.calendarId
+    }
+  });
+  return calendar.filter(c => calendarUserEventsIDs.includes(c.id));
 }
 
 const setLoginState = (loginData) => {
@@ -34,6 +49,8 @@ export const login = (loginInput) => {
         };
         setLoginLocal(payload);
         dispatch(setLoginState(payload));
+
+        dispatch(setCalendarEventState(getEvents(user.id)));
         dispatch(setUserState(user));
       } catch (e) {
         Alert.alert('login failed, sorry');

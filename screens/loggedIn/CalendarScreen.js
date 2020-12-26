@@ -5,10 +5,10 @@ import CalendarEvent from '../../components/CalendarEvent';
 import EmptyState from '../../components/EmptyState';
 
 const CalendarScreen = (props) => {
-  return props.user.calendar.length > 0 ? (
+  return props.calendar.length > 0 ? (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        {props.user.calendar.map((scheduledEvent, i) => {
+        {props.calendar.map((scheduledEvent, i) => {
           return (
             <TouchableOpacity key={`calendar-event-${i}`} onPress={() => props.navigation.navigate('ScheduledEventInfo', { scheduledEvent })}>
               <CalendarEvent
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    user: state.userReducer.user || [],
+    calendar: state.calendarReducer.calendarEvents || [],
   }
 }
 
