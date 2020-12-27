@@ -6,15 +6,26 @@ export const setCalendarEventState = data => {
 };
 
 export const addEvent = newEvent => {
-  return {
-    type: 'ADD_CALENDAR_EVENT',
-    payload: newEvent,
+  return async (dispatch) => {
+    dispatch({
+      type: 'ADD_CALENDAR_EVENT',
+      payload: newEvent,
+    });
   }
 };
 
 export const editEvent = currentEvent => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'EDIT_CALENDAR_EVENT',
+      payload: currentEvent,
+    });
+  }
+};
+
+export const cancelEvent = eventID => {
   return {
-    type: 'EDIT_CALENDAR_EVENT',
-    payload: currentEvent,
+    type: 'DELETE_CALENDAR_EVENT',
+    payload: eventID,
   }
 };

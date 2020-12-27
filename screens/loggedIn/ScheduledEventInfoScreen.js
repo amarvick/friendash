@@ -29,6 +29,9 @@ const ScheduledEventInfoScreen = (props) => {
         {statusMessage}
       </Text> : null }
       <View style={styles.eventDetails}>
+      <View style={styles.eventDetail}>
+          <Icon name="md-person" size={30} /><Text style={styles.eventDetailText}>Someone</Text>
+        </View>
         <View style={styles.eventDetail}>
           <Icon name="md-calendar" size={30} /><Text style={styles.eventDetailText}>{eventDetails.date}</Text>
         </View>

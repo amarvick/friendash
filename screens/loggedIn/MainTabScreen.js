@@ -76,7 +76,7 @@ const StackOptions = (title, navigation) => ({
   title,
   headerRight: () => (
     <View style={styles.headerRightStyle}>
-      <Icon.Button name="md-create" size={25} backgroundColor="#65c2f5" onPress={() => navigation.navigate('ModifyEventScreen')}></Icon.Button>
+      <Icon.Button name="md-add" size={25} backgroundColor="#65c2f5" onPress={() => navigation.navigate('AddEvent')}></Icon.Button>
       <Icon.Button name="md-menu" size={25} backgroundColor="#65c2f5" onPress={() => navigation.openDrawer()}></Icon.Button>
     </View>
   )
@@ -89,6 +89,7 @@ const headerLeft = (navigation, page) => (
 const FeedStackScreen = ({ navigation }) => (
   <FeedStack.Navigator screenOptions={headerProps}>
     <FeedStack.Screen name="Feed" component={FeedScreen} options={StackOptions('Overview', navigation)} />
+    <FeedStack.Screen name="AddEvent" component={ModifyEventScreen} />
   </FeedStack.Navigator>
 );
 
@@ -99,6 +100,7 @@ const CalendarStackScreen = ({ navigation }) => (
       ...StackOptions('Overview', navigation),
       headerLeft: () => headerLeft(navigation, 'Calendar')
     }} />
+    <CalendarStack.Screen name="AddEvent" component={ModifyEventScreen} />
     <CalendarStack.Screen name="EditEvent" component={ModifyEventScreen} />
   </CalendarStack.Navigator>
 );
@@ -110,12 +112,14 @@ const ConnectionsStackScreen = ({ navigation }) => (
       ...StackOptions('Overview', navigation),
       headerLeft: () => headerLeft(navigation, 'Connections')
     }} />
+    <ConnectionsStack.Screen name="AddEvent" component={ModifyEventScreen} />
   </ConnectionsStack.Navigator>
 );
 
 const SearchStackScreen = ({ navigation }) => (
   <SearchStack.Navigator screenOptions={headerProps}>
     <SearchStack.Screen name="Search" component={SearchScreen} options={StackOptions('Overview', navigation)} />
+    <SearchStack.Screen name="AddEvent" component={ModifyEventScreen} />
   </SearchStack.Navigator>
 );
 

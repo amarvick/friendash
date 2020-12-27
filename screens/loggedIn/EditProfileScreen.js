@@ -275,7 +275,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    update: (data) => dispatch(update(data))
+    update: data => dispatch(update(data))
   }
 }
 

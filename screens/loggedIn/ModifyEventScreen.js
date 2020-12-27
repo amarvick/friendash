@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { windowHeight } from '../../utils/Dimensions';
+import { addEvent, editEvent } from '../../redux/actions/calendarActions';
+import { connect } from 'react-redux';
 
 import FormInput from '../../components/FormInput';
 import FormButton from '../../components/FormButton';
@@ -8,13 +10,14 @@ import DatePicker from 'react-native-datepicker';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const ModifyEventScreen = (props) => {
-  const eventDetails = props.route.params.eventDetails ?? {};
+  const eventDetails = props.route.params != null ? props.route.params.eventDetails : {};
+
   const [data, setData] = React.useState({
-    eventName: eventDetails.eventName ?? '',
-    date: new Date(eventDetails.date) ?? '',
-    time: eventDetails.time ?? '',
-    location: eventDetails.location ?? '',
-    status: eventDetails.status ?? '',
+    eventName: eventDetails.eventName || '',
+    date: eventDetails.date || new Date(),
+    time: eventDetails.time || '',
+    location: eventDetails.location || '',
+    status: eventDetails.status || '',
   });
 
   const onChangeEventName = eventName => {
@@ -65,22 +68,32 @@ const ModifyEventScreen = (props) => {
 
   const onEditEvent = () => {
     if (!onCheckErrors()) {
-      alert('editing event');
+      props.editEvent({
+        ...data,
+        id: eventDetails.id,
+        date: `${data.date}`
+      });
+      alert('event edited');
     }
   }
 
   const onAddEvent = () => {
-    if (!onCheckErrors) {
-      alert('adding event');
+    if (!onCheckErrors()) {
+      props.addEvent(data);
+      alert('event added');
     }
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.eventTitle}>Editing event: {eventDetails.eventName}</Text>
+        <Text style={styles.eventTitle}>{
+            JSON.stringify(eventDetails) != '{}'
+              ? `Editing Event: ${eventDetails.eventName}`
+              : 'Adding Event'
+        }</Text>
       </View>
-      <View style={styles.eventDetails}>
+      <View style={styles.eventDetailsStyles}>
         <FormInput
           labelValue={data.eventName}
           onChangeText={eventName => onChangeEventName(eventName)}
@@ -91,13 +104,11 @@ const ModifyEventScreen = (props) => {
         />
 
         <DatePicker
-          date={new Date()}
+          date={data.date}
           style={styles.datePicker}
           mode="date"
           placeholder="Select Date"
-          format="MM-DD-YYYY"
-          minDate="2016-05-01"
-          maxDate="2020-06-01"
+          format="M/DD/YYYY"
           confirmBtnText="Set"
           cancelBtnText="Cancel"
           iconComponent={
@@ -110,6 +121,7 @@ const ModifyEventScreen = (props) => {
           customStyles={{
             dateInput: styles.dateInput
           }}
+          useNativeDriver={true}
         />
 
         <DatePicker
@@ -144,7 +156,7 @@ const ModifyEventScreen = (props) => {
         <FormButton
           buttonText="Save"
           onPress={
-            eventDetails != {} ? 
+            JSON.stringify(eventDetails) != '{}' ?
               () => onEditEvent() :
               () => onAddEvent()
           }
@@ -170,7 +182,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
   },
-  eventDetails: {
+  eventDetailsStyles: {
     fontSize: 22,
     justifyContent: 'flex-start',
     alignItems: 'center',
@@ -216,11 +228,12 @@ const styles = StyleSheet.create({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateCalendarEvent: (info) => dispatch(updateCalendarEvent(info))
+    addEvent: info => dispatch(addEvent(info)),
+    editEvent: info => dispatch(editEvent(info))
   }
 }
 
 export default connect(
-  {},
+  null,
   mapDispatchToProps,
 )(ModifyEventScreen);

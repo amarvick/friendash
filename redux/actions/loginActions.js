@@ -49,7 +49,6 @@ export const login = (loginInput) => {
         };
         setLoginLocal(payload);
         dispatch(setLoginState(payload));
-
         dispatch(setCalendarEventState(getEvents(user.id)));
         dispatch(setUserState(user));
       } catch (e) {

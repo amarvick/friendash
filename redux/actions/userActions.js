@@ -7,17 +7,13 @@ export const setUserState = data => {
   }
 }
 
-const updateUserState = data => {
-  return {
-    type: 'UPDATE_ABOUT_USER',
-    payload: data,
-  }
-}
-
 export const update = data => {
   return async (dispatch) => {
     try {
-      dispatch(updateUserState(data.info));
+      dispatch({
+        type: 'UPDATE_ABOUT_USER',
+        payload: data.info,
+      });
       Alert.alert('Saved!');
     } catch (e) {
       Alert.alert('updating failed: ' + JSON.stringify(e));
