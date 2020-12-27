@@ -10,7 +10,7 @@ const CalendarEvent = ({ eventName, date, time, location, status }) => {
     ]}>
       <View style={[
         styles.header,
-        status == 'Cancelled' ? styles.cancelledHeader : styles.nonCancelledHeader
+        { backgroundColor: status == 'Cancelled' ? '#464646' : '#65c2f5' }
       ]}>
         <Text style={styles.headerText}>
           {`${status == 'Cancelled' ? '* CANCELLED *' : ''} ${eventName}`}
@@ -31,7 +31,6 @@ const CalendarEvent = ({ eventName, date, time, location, status }) => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: 'center',
     marginTop: 20,
     marginBottom: 20,
     width: windowWidth / 1.1,
@@ -45,7 +44,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.4,
     shadowRadius: 5,
-    elevation: 3,
   },
   nonCancelledContainer: {
     borderColor: '#65c2f5',
@@ -56,19 +54,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#DBDBDB',
   },
   header: {
-    justifyContent: 'center',
     backgroundColor: '#65c2f5',
     width: '100%',
     padding: 10,
     borderTopLeftRadius: 3,
     borderTopRightRadius: 3,
-    margin: 0
-  },
-  nonCancelledHeader: {
-    backgroundColor: '#65c2f5',
-  },
-  cancelledHeader: {
-    backgroundColor: '#464646',
   },
   headerText: {
     fontWeight: 'bold',
@@ -77,15 +67,16 @@ const styles = StyleSheet.create({
   },
   body: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    marginHorizontal: 20,
+    top: 12,
   },
   bodyContent: {
     justifyContent: 'center',
-    paddingHorizontal: 14,
   },
   bodyText: {
     top: 5,
-    paddingVertical: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
   },
   contactImage: {
     height: 100,
