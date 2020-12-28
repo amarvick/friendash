@@ -14,6 +14,7 @@ const ModifyEventScreen = (props) => {
 
   const [data, setData] = React.useState({
     eventName: eventDetails.eventName || '',
+    attendee: eventDetails.with || '',
     date: eventDetails.date || new Date(),
     time: eventDetails.time || '',
     location: eventDetails.location || '',
@@ -24,6 +25,13 @@ const ModifyEventScreen = (props) => {
     setData({
       ...data,
       eventName,
+    });
+  }  
+  
+  const onChangeEventAttendee = attendee => {
+    setData({
+      ...data,
+      attendee,
     });
   }
 

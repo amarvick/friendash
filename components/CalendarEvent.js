@@ -12,7 +12,7 @@ const CalendarEvent = ({ eventName, date, time, location, status }) => {
         styles.header,
         { backgroundColor: status == 'Cancelled' ? '#464646' : '#65c2f5' }
       ]}>
-        <Text style={styles.headerText}>
+        <Text numberOfLines={1} style={styles.headerText}>
           {`${status == 'Cancelled' ? '* CANCELLED *' : ''} ${eventName}`}
         </Text>
       </View>
@@ -21,8 +21,8 @@ const CalendarEvent = ({ eventName, date, time, location, status }) => {
           <Image style={styles.contactImage} source={require('../assets/running.png')} />
         </View>
         <View style={styles.bodyContent}>
-          <Text style={{ ...styles.bodyText, fontSize: 22 }}>{location}</Text>
-          <Text style={styles.bodyText}>{date} • {time}</Text>
+          <Text numberOfLines={1} style={{ ...styles.bodyText, fontSize: 22 }}>{location}</Text>
+          <Text numberOfLines={1} style={styles.bodyText}>{date} • {time}</Text>
         </View>
       </View>
     </View>
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderTopLeftRadius: 3,
     borderTopRightRadius: 3,
+    overflow: 'hidden',
   },
   headerText: {
     fontWeight: 'bold',

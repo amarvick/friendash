@@ -39,7 +39,7 @@ const ScheduledEventInfoScreen = (props) => {
           <Icon name="md-clock" size={30} /><Text style={styles.eventDetailText}>{eventDetails.time}</Text>
         </View>
         <View style={styles.eventDetail}>
-          <Icon name="md-locate" size={30} /><Text style={styles.eventDetailText}>{eventDetails.location}</Text>
+          <Icon name="md-locate" size={30} /><Text numberOfLines={1} style={styles.eventDetailText}>{eventDetails.location}</Text>
         </View>
       </View>
       {eventDetails.status != 'Cancelled' ? (
@@ -72,10 +72,9 @@ const styles = StyleSheet.create({
   },
   eventDetail: {
     fontSize: 22,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
     flexDirection: 'row',
     marginVertical: 10,
+    width: '75%',
   },
   eventDetailText: {
     fontSize: 18,

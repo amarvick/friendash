@@ -89,7 +89,10 @@ const headerLeft = (navigation, page) => (
 const FeedStackScreen = ({ navigation }) => (
   <FeedStack.Navigator screenOptions={headerProps}>
     <FeedStack.Screen name="Feed" component={FeedScreen} options={StackOptions('Overview', navigation)} />
-    <FeedStack.Screen name="AddEvent" component={ModifyEventScreen} />
+    <FeedStack.Screen name="AddEvent" component={ModifyEventScreen} options={{
+      ...StackOptions('Overview', navigation),
+      headerLeft: () => headerLeft(navigation, 'Feed')
+    }} />
   </FeedStack.Navigator>
 );
 
@@ -100,8 +103,11 @@ const CalendarStackScreen = ({ navigation }) => (
       ...StackOptions('Overview', navigation),
       headerLeft: () => headerLeft(navigation, 'Calendar')
     }} />
+    <CalendarStack.Screen name="EditEvent" component={ModifyEventScreen} options={{
+      ...StackOptions('Overview', navigation),
+      headerLeft: () => headerLeft(navigation, 'ScheduledEventInfo')
+    }} />
     <CalendarStack.Screen name="AddEvent" component={ModifyEventScreen} />
-    <CalendarStack.Screen name="EditEvent" component={ModifyEventScreen} />
   </CalendarStack.Navigator>
 );
 
@@ -119,7 +125,10 @@ const ConnectionsStackScreen = ({ navigation }) => (
 const SearchStackScreen = ({ navigation }) => (
   <SearchStack.Navigator screenOptions={headerProps}>
     <SearchStack.Screen name="Search" component={SearchScreen} options={StackOptions('Overview', navigation)} />
-    <SearchStack.Screen name="AddEvent" component={ModifyEventScreen} />
+    <SearchStack.Screen name="AddEvent" component={ModifyEventScreen} options={{
+      ...StackOptions('Overview', navigation),
+      headerLeft: () => headerLeft(navigation, 'Search')
+    }} />
   </SearchStack.Navigator>
 );
 

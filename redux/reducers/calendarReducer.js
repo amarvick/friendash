@@ -36,8 +36,6 @@ export const calendarReducer = (state = initialState, action) => {
           return c;
         }),
       }
-    case 'DELETE_CALENDAR_EVENT':
-      return calendarEvents;
     default:
       return state;
   }

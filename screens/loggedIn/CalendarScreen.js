@@ -3,12 +3,15 @@ import { TouchableOpacity, SafeAreaView, ScrollView, StyleSheet } from 'react-na
 import { connect } from 'react-redux';
 import CalendarEvent from '../../components/CalendarEvent';
 import EmptyState from '../../components/EmptyState';
+import moment from 'moment';
 
 const CalendarScreen = (props) => {
   return props.calendar.length > 0 ? (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        {props.calendar.map((scheduledEvent, i) => {
+        {props.calendar.sort(function (a, b) {
+          return moment(a.date + " " + a.time) - moment(b.date + " " + b.time);
+        }).map((scheduledEvent, i) => {
           return (
             <TouchableOpacity key={`calendar-event-${i}`} onPress={() => props.navigation.navigate('ScheduledEventInfo', { scheduledEvent })}>
               <CalendarEvent
