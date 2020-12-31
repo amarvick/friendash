@@ -6,11 +6,11 @@ import QueriedContact from '../../components/QueriedContact';
 import EmptyState from '../../components/EmptyState';
 
 const SearchScreen = (props) => {
-  const userCoordinates = props.user.coordinates;
-  return props.user.queried.length > 0 ? (
+  const userCoordinates = props.userCoordinates;
+  return props.queriedUsers.length > 0 ? (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        {props.user.queried.map((user, i) => {
+        {props.queriedUsers.map((user, i) => {
           const distance = getDistance(userCoordinates, user.coordinates);
           return (
             <TouchableOpacity key={`queried-user-${i}`}>
@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    user: state.userReducer.user || [],
+    userCoordinates: state.userReducer.user.coordinates || [0, 0],
+    queriedUsers: state.queriedUsersReducer.queriedUsers || [],
   }
 }
 

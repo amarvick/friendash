@@ -5,10 +5,10 @@ import ContactListItem from '../../components/ContactListItem';
 import EmptyState from '../../components/EmptyState';
 
 const ConnectionsScreen = (props) => {
-  return props.user.connections.length > 0 ? (
+  return props.connections.length > 0 ? (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        {props.user.connections.map((user, i) => {
+        {props.connections.map((user, i) => {
           return (
             <TouchableOpacity key={`connection-${i}`} onPress={() => props.navigation.navigate('ConnectionProfile', { user })}>
               <ContactListItem
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
   return {
-    user: state.userReducer.user || [],
+    connections: state.connectionsReducer.connections || [],
   }
 }
 

@@ -4,9 +4,13 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { user } from '../data_TEMP/user';
 import { calendar_user } from '../data_TEMP/calendar_user';
 import { calendar } from '../data_TEMP/calendar';
+import { connections } from '../data_TEMP/connections';
+import { queriedUsers } from '../data_TEMP/queried_users';
 
 import { setUserState } from './userActions';
 import { setCalendarEventState } from './calendarActions';
+import { setConnectionsState } from './connectionsActions';
+import { setQueriedUsersState } from './queriedUserActions';
 
 const userInfo = {
   email: 'alex@friendash.com',
@@ -21,6 +25,14 @@ const getEvents = id => {
     }
   });
   return calendar.filter(c => calendarUserEventsIDs.includes(c.id));
+}
+
+const getConnections = id => {
+  return connections;
+}
+
+const getQueried = id => {
+  return queriedUsers;
 }
 
 const setLoginState = (loginData) => {
@@ -38,6 +50,15 @@ const setLoginLocal = async (loginData) => {
   }
 };
 
+const setFullUserState = (dispatch, payload, events, connections, queried, user) => {
+  setLoginLocal(payload);
+  dispatch(setLoginState(payload));
+  dispatch(setCalendarEventState(events));
+  dispatch(setConnectionsState(connections));
+  dispatch(setQueriedUsersState(queried));
+  dispatch(setUserState(user));
+}
+
 export const login = (loginInput) => {
   const { email, password } = loginInput;
   return async (dispatch) => {
@@ -47,10 +68,7 @@ export const login = (loginInput) => {
           token: '123',
           user: user.id
         };
-        setLoginLocal(payload);
-        dispatch(setLoginState(payload));
-        dispatch(setCalendarEventState(getEvents(user.id)));
-        dispatch(setUserState(user));
+        setFullUserState(dispatch, payload, getEvents(user.id), getConnections(user.id), getQueried(user.id), user);
       } catch (e) {
         Alert.alert('login failed, sorry');
       }
@@ -71,12 +89,11 @@ export const getStorageDataOnLoad = (data) => {
 export const logout = () => {
   return async (dispatch) => {
     try {
-      const data = {
+      const payload = {
         token: '',
         user: '',
       };
-      setLoginState(data);
-      dispatch(setLoginState(data));
+      setFullUserState(dispatch, payload, [], [], [], {});
     } catch (e) {
       Alert.alert('logout failed: ' + JSON.stringify(e));
     }
