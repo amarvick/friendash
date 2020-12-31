@@ -1,5 +1,24 @@
-export const getDistance = (coordinates1, coordinates2) => {
-  const dx = Math.abs(coordinates1[0] - coordinates2[0]);
-  const dy = Math.abs(coordinates1[1] - coordinates2[1]);
-  return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2)).toFixed(2);
+// Source: https://www.geodatasource.com/developers/javascript
+export const getDistance = (lat1, lon1, lat2, lon2) => {
+  if (lat1 == lat2 && lon1 == lon2) {
+    return 0;
+  } else {
+    const radlat1 = Math.PI * lat1 / 180;
+    const radlat2 = Math.PI * lat2 / 180;
+    const theta = lon1 - lon2;
+    const radtheta = Math.PI * theta / 180;
+    let dist =
+      Math.sin(radlat1) *
+      Math.sin(radlat2) +
+      Math.cos(radlat1) *
+      Math.cos(radlat2) *
+      Math.cos(radtheta);
+    if (dist > 1) {
+      dist = 1;
+    }
+    dist = Math.acos(dist);
+    dist = dist * 180 / Math.PI;
+    dist = dist * 60 * 1.1515;
+    return dist.toFixed(1);
+  }
 }

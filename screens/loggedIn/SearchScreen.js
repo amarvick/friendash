@@ -11,7 +11,12 @@ const SearchScreen = (props) => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {props.queriedUsers.map((user, i) => {
-          const distance = getDistance(userCoordinates, user.coordinates);
+          const distance = getDistance(
+            userCoordinates[0], 
+            userCoordinates[1], 
+            user.coordinates[0], 
+            user.coordinates[1]
+          );
           return (
             <TouchableOpacity key={`queried-user-${i}`}>
               <QueriedContact

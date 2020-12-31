@@ -27,12 +27,13 @@ const getEvents = id => {
   return calendar.filter(c => calendarUserEventsIDs.includes(c.id));
 }
 
+// This will probably be a M-M relationship like the calendar -- ask Michael?
 const getConnections = id => {
   return connections;
 }
 
-const getQueried = id => {
-  return queriedUsers;
+const getQueried = queriedIds => {
+  return queriedUsers.filter(user => queriedIds.includes(user.id));
 }
 
 const setLoginState = (loginData) => {
@@ -68,7 +69,7 @@ export const login = (loginInput) => {
           token: '123',
           user: user.id
         };
-        setFullUserState(dispatch, payload, getEvents(user.id), getConnections(user.id), getQueried(user.id), user);
+        setFullUserState(dispatch, payload, getEvents(user.id), getConnections(user.id), getQueried(user.queriedUsers), user);
       } catch (e) {
         Alert.alert('login failed, sorry');
       }

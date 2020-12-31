@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
 
 const QueriedContact = ({name, location, distance, type}) => {
@@ -16,7 +15,7 @@ const QueriedContact = ({name, location, distance, type}) => {
         <View style={styles.bodyContent}>
           <Text style={{fontSize: 22, marginBottom: 8}}>{type}</Text>
           <Text style={styles.bodyText}>{location}</Text>
-          <Text style={styles.bodyText}>{`${distance} miles away`}</Text>
+          <Text style={styles.bodyText}>{`~${distance} miles away`}</Text>
         </View>
       </View>
     </View>
