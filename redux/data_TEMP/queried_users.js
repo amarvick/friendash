@@ -13,7 +13,7 @@ export const queriedUsers = [
     'trainingFor': [
       'Marathon',
     ],
-    'connected': false,
+    'connectionStatus': 'NOT_CONNECTED',
   },
   {
     'id': 15,
@@ -29,7 +29,7 @@ export const queriedUsers = [
     'trainingFor': [
       'Fun',
     ],
-    'connected': false,
+    'connectionStatus': 'NOT_CONNECTED',
   },
   {
     'id': 16,
@@ -45,7 +45,7 @@ export const queriedUsers = [
     'trainingFor': [
       'Fun',
     ],
-    'connected': false,
+    'connectionStatus': 'NOT_CONNECTED',
   },
   {
     'id': 17,
@@ -61,6 +61,6 @@ export const queriedUsers = [
     'trainingFor': [
       'Fun',
     ],
-    'connected': false,
+    'connectionStatus': 'NOT_CONNECTED',
   },
 ];

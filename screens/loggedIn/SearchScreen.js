@@ -18,7 +18,7 @@ const SearchScreen = (props) => {
             user.coordinates[1]
           );
           return (
-            <TouchableOpacity key={`queried-user-${i}`}>
+            <TouchableOpacity key={`queried-user-${i}`} onPress={() => props.navigation.navigate('QueriedProfile', { user })}>
               <QueriedContact
                 name={user.name}
                 location={user.location}

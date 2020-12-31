@@ -1,5 +1,5 @@
-// Source: https://www.geodatasource.com/developers/javascript
 export const getDistance = (lat1, lon1, lat2, lon2) => {
+  // Source: https://www.geodatasource.com/developers/javascript
   if (lat1 == lat2 && lon1 == lon2) {
     return 0;
   } else {

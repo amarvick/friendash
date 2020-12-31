@@ -19,6 +19,7 @@ export const connections = [
       'Full Marathons',
       'Ultra Marathons',
     ],
+    'connectionStatus': 'CONNECTED',
   },
   {
     'id': 18,
@@ -40,6 +41,7 @@ export const connections = [
       'Full Marathons',
       'Ultra Marathons',
     ],
+    'connectionStatus': 'CONNECTED',
   },
   {
     'id': 19,
@@ -61,5 +63,6 @@ export const connections = [
       'Full Marathons',
       'Ultra Marathons',
     ],
+    'connectionStatus': 'PENDING',
   }
 ];

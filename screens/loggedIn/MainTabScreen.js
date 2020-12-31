@@ -125,6 +125,10 @@ const ConnectionsStackScreen = ({ navigation }) => (
 const SearchStackScreen = ({ navigation }) => (
   <SearchStack.Navigator screenOptions={headerProps}>
     <SearchStack.Screen name="Search" component={SearchScreen} options={StackOptions('Overview', navigation)} />
+    <SearchStack.Screen name="QueriedProfile" component={ProfileScreen} options={{
+      ...StackOptions('Overview', navigation),
+      headerLeft: () => headerLeft(navigation, 'Connections')
+    }} />
     <SearchStack.Screen name="AddEvent" component={ModifyEventScreen} options={{
       ...StackOptions('Overview', navigation),
       headerLeft: () => headerLeft(navigation, 'Search')

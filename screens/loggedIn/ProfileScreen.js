@@ -6,14 +6,38 @@ import { connect } from 'react-redux';
 import AboutMeSection from '../../components/AboutMeSection';
 import ProfileHeader from '../../components/ProfileHeader';
 
+import { removeQueriedUser } from '../../redux/actions/queriedUserActions';
+import { addConnection } from '../../redux/actions/queriedUserActions';
+
 const ProfileScreen = (props) => {
   const user = props.route.params.user;
-  const editButton = user.id == props.userId ? (
-    <FormButton 
-      buttonText = "Edit Profile"
-      onPress={() => props.navigation.navigate('EditProfile')}
-    />
-  ) : null;
+
+  const requestUser = (user) => {
+    props.removeQueriedUser(user.id);
+    props.addConnection({
+      ...user,
+      connectionStatus: 'PENDING'
+    });
+    // send message
+    // also go back to the queried page
+  }
+
+  let editButton;
+  if (user.id == props.userId) {
+    editButton = (
+      <FormButton
+        buttonText="Edit Profile"
+        onPress={() => props.navigation.navigate('EditProfile')}
+      />
+    )
+  } else if (user.connectionStatus == 'NOT_CONNECTED') {
+    editButton = (
+      <FormButton
+        buttonText="Request"
+        onPress={() => requestUser()}
+      />
+    )
+  }
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -67,7 +91,14 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    removeQueriedUser: userID => dispatch(removeQueriedUser(userID)),
+    addConnection: user => dispatch(addConnection(user)),
+  }
+}
+
 export default connect(
   mapStateToProps,
-  {},
+  mapDispatchToProps,
 )(ProfileScreen);
