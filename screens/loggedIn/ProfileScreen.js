@@ -7,17 +7,19 @@ import AboutMeSection from '../../components/AboutMeSection';
 import ProfileHeader from '../../components/ProfileHeader';
 
 import { removeQueriedUser } from '../../redux/actions/queriedUserActions';
-import { addConnection } from '../../redux/actions/queriedUserActions';
+import { addConnection } from '../../redux/actions/connectionsActions';
 
 const ProfileScreen = (props) => {
   const user = props.route.params.user;
+  const index = props.route.params.index; // to be removed later
 
   const requestUser = (user) => {
-    props.removeQueriedUser(user.id);
+    props.removeQueriedUser(index); // user.id
     props.addConnection({
       ...user,
       connectionStatus: 'PENDING'
     });
+    alert('Added user');
     // send message
     // also go back to the queried page
   }
@@ -34,7 +36,7 @@ const ProfileScreen = (props) => {
     editButton = (
       <FormButton
         buttonText="Request"
-        onPress={() => requestUser()}
+        onPress={() => requestUser(user)}
       />
     )
   }

@@ -32,7 +32,7 @@ export const queriedUsers = [
     'connectionStatus': 'NOT_CONNECTED',
   },
   {
-    'id': 16,
+    'id': 17,
     'name': 'Miles',
     'location': 'Seattle, WA',
     'coordinates': [47.6062, 122.33],
@@ -48,7 +48,7 @@ export const queriedUsers = [
     'connectionStatus': 'NOT_CONNECTED',
   },
   {
-    'id': 17,
+    'id': 18,
     'name': 'Zack',
     'location': 'Lakewood, WA',
     'coordinates': [47.17, 122.51],

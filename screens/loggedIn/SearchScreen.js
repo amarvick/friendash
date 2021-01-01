@@ -10,7 +10,7 @@ const SearchScreen = (props) => {
   return props.queriedUsers.length > 0 ? (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        {props.queriedUsers.map((user, i) => {
+        {props.queriedUsers.map((user, index) => {
           const distance = getDistance(
             userCoordinates[0], 
             userCoordinates[1], 
@@ -18,7 +18,7 @@ const SearchScreen = (props) => {
             user.coordinates[1]
           );
           return (
-            <TouchableOpacity key={`queried-user-${i}`} onPress={() => props.navigation.navigate('QueriedProfile', { user })}>
+            <TouchableOpacity key={`queried-user-${index}`} onPress={() => props.navigation.navigate('QueriedProfile', { user, index })}>
               <QueriedContact
                 name={user.name}
                 location={user.location}

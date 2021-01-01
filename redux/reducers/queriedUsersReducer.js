@@ -10,8 +10,10 @@ export const queriedUsersReducer = (state = initialState, action) => {
         queriedUsers: payload
       };
     case 'REMOVE_QUERIED_USER':
+      let queriedUsers = state.queriedUsers;
+      queriedUsers.splice(payload, 1);
       return {
-        queriedUsers: state.queriedUsers.splice(payload, 1)
+        queriedUsers,
       };
     default:
       return state;
