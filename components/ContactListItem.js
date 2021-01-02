@@ -4,11 +4,17 @@ import { windowWidth } from '../utils/Dimensions';
 import ContactButton from './ContactButton'
 
 const ContactListItem = ({ connection, goToChat }) => {
+  const pending = connection.connectionStatus == 'PENDING' ? (
+    <Text style={styles.pendingText}>Pending...</Text>
+  ) : null;
   return (
     <View style={styles.container}>
       <View style={styles.contactInfo}>
         <Image style={styles.contactImage} source={connection.image} />
-        <Text style={styles.text}>{connection.name}</Text>
+        <View style={styles.contactTextInfo}>
+          <Text style={styles.nameText}>{connection.name}</Text>
+          {pending}
+        </View>
       </View>
       <View style={styles.contactOptions}>
         <ContactButton buttonText='Chat' onPress={goToChat} />
@@ -31,9 +37,15 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  text: {
+  contactTextInfo: {
+    justifyContent: 'center',
     marginLeft: 20,
+  },
+  nameText: {
     fontWeight: 'bold',
+  },
+  pendingText: {
+    color: 'gray',
   },
   contactOptions: {
     flexDirection: 'row',

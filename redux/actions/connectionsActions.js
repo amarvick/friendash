@@ -1,3 +1,22 @@
+import { user_group } from '../data_TEMP/user_group';
+import { connections } from '../data_TEMP/connections';
+
+export const getConnections = id => {
+  const groupIds = user_group.map(ug => {
+    if (ug.userId == id) {
+      return ug.groupId;
+    }
+  });
+
+  const connectionIds = user_group.map(ug => {
+    if (groupIds.includes(ug.groupId) && ug.userId != id) {
+      return ug.userId;
+    }
+  });
+
+  return connections.filter(c => connectionIds.includes(c.id));
+}
+
 export const setConnectionsState = data => {
   return {
     type: 'SET_CONNECTIONS',

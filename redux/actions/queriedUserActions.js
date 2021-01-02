@@ -1,3 +1,9 @@
+import { queriedUsers } from '../data_TEMP/queried_users';
+
+export const getQueried = queriedIds => {
+  return queriedUsers.filter(user => queriedIds.includes(user.id));
+}
+
 export const setQueriedUsersState = data => {
   return {
     type: 'SET_QUERIED_USERS',
