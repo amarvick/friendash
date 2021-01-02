@@ -1,6 +1,4 @@
 // MM relationship for connections -- any single established 'connection' 
-// i.e. 'friend'
-// Might make in to groups in the future
 
 export const user_group = [
   {
