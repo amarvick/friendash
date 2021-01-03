@@ -11,9 +11,7 @@ export const groupReducer = (state = initialState, action) => {
       };
     case 'ADD_GROUP':
       return {
-        groups: [...state.groups, {
-          ...payload,
-        }]
+        groups: [...state.groups, payload]
       };
     // case 'REMOVE_GROUP':
     //   return {

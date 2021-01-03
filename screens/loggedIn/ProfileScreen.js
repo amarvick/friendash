@@ -16,6 +16,16 @@ const ProfileScreen = (props) => {
 
   const requestUser = (user) => {
     props.removeQueriedUser(index); // user.id
+    props.addGroup({
+      'id': String(Math.random() * 234524345),
+      'connectionId': user.id,
+      'messages': [{
+        'id': String(Math.random() * 243523456),
+        'sender': props.userId,
+        'dateSent': '12/4/2020',
+        'message': 'Hey, I\'d like to go on a run with you!',
+      }],
+    })
     props.addConnection({
       ...user,
       connectionStatus: 'PENDING'

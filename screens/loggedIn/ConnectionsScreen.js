@@ -24,13 +24,13 @@ const ConnectionsScreen = (props) => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {props.connections.map((user, i) => {
-          const messages = connectionsToGroup[user.id].messages ?? {};
+          const messages = connectionsToGroup[user.id].messages || {};
           return (
             <TouchableOpacity key={`connection-${i}`} onPress={() => props.navigation.navigate('ConnectionProfile', { user })}>
               <ContactListItem
                 image={require('../../assets/running.png')}
                 connection={user}
-                goToChat={() => props.navigation.navigate('Chat', { messages })}
+                goToChat={() => props.navigation.navigate('Chat', { messages, user })}
               />
             </TouchableOpacity>
           )
@@ -59,6 +59,7 @@ const mapStateToProps = (state) => {
   return {
     connections: state.connectionsReducer.connections || [],
     groups: state.groupReducer.groups || [],
+    
   }
 }
 

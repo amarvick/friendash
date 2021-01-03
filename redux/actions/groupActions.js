@@ -39,12 +39,12 @@ export const setGroupsState = data => {
   }
 }
 
-// export const addGroup = group => {
-//   return {
-//     type: 'ADD_GROUP',
-//     payload: group,
-//   }
-// };
+export const addGroup = group => {
+  return {
+    type: 'ADD_GROUP',
+    payload: group,
+  }
+};
 
 // export const removeGroup = groupID => {
 //   return {

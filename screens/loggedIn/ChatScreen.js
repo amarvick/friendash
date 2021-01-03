@@ -7,12 +7,14 @@ const ChatScreen = (props) => {
   const [text, setText] = React.useState({
     text: '',
   });
-
   const sendMessage = () => {
-    alert('message sent!');
-    setText('');
+    if (text != '') {
+      alert('message sent!');
+      setText('');
+    }
   }
 
+  const user = props.route.params.user;
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.messagesContainer}>
@@ -32,12 +34,15 @@ const ChatScreen = (props) => {
         })}
       </ScrollView>
       <View>
+        {user.connectionStatus == 'PENDING' ? (
+          <Text>Awaiting for user to accept...</Text>
+        ) : (
         <TextMessageInput
           labelValue={text}
           placeholderText="Write message..."
           onChange={text => setText(text)}
           sendMessage={sendMessage}
-        />
+        />)}
       </View>
     </SafeAreaView>
   );
@@ -50,15 +55,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   messageContainer: {
-    borderRadius: 5,
+    borderRadius: 40,
     minWidth: '20%',
     maxWidth: '50%',
-    padding: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
     margin: 10,
   },
   otherUserMessage: {
     alignSelf: 'flex-start',
-    backgroundColor: 'gray',
+    backgroundColor: '#DCDCDC',
   },
   yourMessage: {
     alignSelf: 'flex-end',
