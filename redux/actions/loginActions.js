@@ -2,12 +2,12 @@ import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import { user } from '../data_TEMP/user';
-import { messages } from '../data_TEMP/messages';
 
 import { setUserState } from './userActions';
 import { setCalendarEventState, getEvents } from './calendarActions';
 import { setConnectionsState, getConnections } from './connectionsActions';
 import { setQueriedUsersState, getQueried } from './queriedUserActions';
+import { setGroupsState, getGroups, getGroupIds } from './groupActions';
 
 const userInfo = {
   email: 'alex@friendash.com',
@@ -29,11 +29,12 @@ const setLoginLocal = async (loginData) => {
   }
 };
 
-const setFullUserState = (dispatch, payload, events, connections, queried, user) => {
+const setFullUserState = (dispatch, payload, events, connections, groups, queried, user) => {
   setLoginLocal(payload);
   dispatch(setLoginState(payload));
   dispatch(setCalendarEventState(events));
   dispatch(setConnectionsState(connections));
+  dispatch(setGroupsState(groups));
   dispatch(setQueriedUsersState(queried));
   dispatch(setUserState(user));
 }
@@ -48,7 +49,16 @@ export const login = (loginInput) => {
           user: user.id
         };
 
-        setFullUserState(dispatch, payload, getEvents(user.id), getConnections(user.id), getQueried(user.queriedUsers), user);
+        const groupIds = getGroupIds(user.id);
+        setFullUserState(
+          dispatch, 
+          payload, 
+          getEvents(user.id), 
+          getConnections(user.id, groupIds), 
+          getGroups(groupIds),
+          getQueried(user.queriedUsers), 
+          user
+        );
       } catch (e) {
         Alert.alert('login failed, sorry');
       }
@@ -73,7 +83,7 @@ export const logout = () => {
         token: '',
         user: '',
       };
-      setFullUserState(dispatch, payload, [], [], [], {});
+      setFullUserState(dispatch, payload, [], [], [], [], {});
     } catch (e) {
       Alert.alert('logout failed: ' + JSON.stringify(e));
     }

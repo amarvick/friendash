@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 const initialState = {
   groups: [],
 };
@@ -17,15 +15,15 @@ export const groupReducer = (state = initialState, action) => {
           ...payload,
         }]
       };
-    case 'REMOVE_GROUP':
-      return {
-        groups: state.groups.map(g => {
-          if (g.id == payload.id) {
-            g = payload;
-          }
-          return g;
-        }),
-      }
+    // case 'REMOVE_GROUP':
+    //   return {
+    //     groups: state.groups.map(g => {
+    //       if (g.id == payload.id) {
+    //         g = payload;
+    //       }
+    //       return g;
+    //     }),
+    //   }
     default:
       return state;
   }

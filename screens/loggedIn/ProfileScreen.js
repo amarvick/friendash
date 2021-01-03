@@ -7,6 +7,7 @@ import AboutMeSection from '../../components/AboutMeSection';
 import ProfileHeader from '../../components/ProfileHeader';
 
 import { removeQueriedUser } from '../../redux/actions/queriedUserActions';
+import { addGroup } from '../../redux/actions/groupActions';
 import { addConnection } from '../../redux/actions/connectionsActions';
 
 const ProfileScreen = (props) => {
@@ -96,6 +97,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     removeQueriedUser: userID => dispatch(removeQueriedUser(userID)),
+    addGroup: group => dispatch(addGroup(group)),
     addConnection: user => dispatch(addConnection(user)),
   }
 }

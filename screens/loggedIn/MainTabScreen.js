@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import FeedScreen from './FeedScreen';
 import CalendarScreen from './CalendarScreen';
+import ChatScreen from './ChatScreen';
 import ConnectionsScreen from './ConnectionsScreen';
 import ScheduledEventInfoScreen from './ScheduledEventInfoScreen';
 import ModifyEventScreen from './ModifyEventScreen';
@@ -115,6 +116,10 @@ const ConnectionsStackScreen = ({ navigation }) => (
   <ConnectionsStack.Navigator screenOptions={headerProps}>
     <ConnectionsStack.Screen name="Connections" component={ConnectionsScreen} options={StackOptions('Overview', navigation)} />
     <ConnectionsStack.Screen name="ConnectionProfile" component={ProfileScreen} options={{
+      ...StackOptions('Overview', navigation),
+      headerLeft: () => headerLeft(navigation, 'Connections')
+    }} />
+    <ConnectionsStack.Screen name="Chat" component={ChatScreen} options={{
       ...StackOptions('Overview', navigation),
       headerLeft: () => headerLeft(navigation, 'Connections')
     }} />
