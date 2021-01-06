@@ -35,16 +35,16 @@ const ProfileScreen = (props) => {
     // also go back to the queried page
   }
 
-  let editButton;
+  let functionButton;
   if (user.id == props.userId) {
-    editButton = (
+    functionButton = (
       <FormButton
         buttonText="Edit Profile"
         onPress={() => props.navigation.navigate('EditProfile')}
       />
     )
   } else if (user.connectionStatus == 'NOT_CONNECTED') {
-    editButton = (
+    functionButton = (
       <FormButton
         buttonText="Request"
         onPress={() => requestUser(user)}
@@ -80,7 +80,7 @@ const ProfileScreen = (props) => {
             headline="I AM TRAINING FOR..."
             text={user.trainingFor}
           />
-          {editButton}
+          {functionButton}
         </View>
       </ScrollView>
     </SafeAreaView>

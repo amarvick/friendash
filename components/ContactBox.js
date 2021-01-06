@@ -1,22 +1,36 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
+import FormButton from './FormButton';
 
-const QueriedContact = ({name, location, distance, type}) => {
+const ContactBox = ({ name, location, distance, type, isRequesting }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>{name}</Text>
       </View>
       <View style={styles.body}>
-        <View style={styles.bodyContent}>
-          <Image style={styles.contactImage} source={require('../assets/running.png')} />
+        <View>
+          <View style={styles.bodyContent}>
+            <Image style={styles.contactImage} source={require('../assets/running.png')} />
+          </View>
+          <View style={styles.bodyContent}>
+            <Text style={{ fontSize: 22, marginBottom: 8 }}>{type}</Text>
+            <Text style={styles.bodyText}>{location}</Text>
+            <Text style={styles.bodyText}>{`~${distance} miles away`}</Text>
+          </View>
         </View>
-        <View style={styles.bodyContent}>
-          <Text style={{fontSize: 22, marginBottom: 8}}>{type}</Text>
-          <Text style={styles.bodyText}>{location}</Text>
-          <Text style={styles.bodyText}>{`~${distance} miles away`}</Text>
-        </View>
+        {isRequesting ? (
+          <View>
+            <Text>"Hey, let's go on a run!"</Text>
+            <FormButton 
+              buttonText="Accept"
+            />
+            <FormButton 
+              buttonText="Decline"
+            />
+          </View>
+        ) : null}
       </View>
     </View>
   );
@@ -78,4 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default QueriedContact;
+export default ContactBox;

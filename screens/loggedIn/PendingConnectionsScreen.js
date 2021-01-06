@@ -5,25 +5,39 @@ import { getDistance } from '../../utils/DistanceCalculator';
 import ContactBox from '../../components/ContactBox';
 import EmptyState from '../../components/EmptyState';
 
-const SearchScreen = (props) => {
-  const userCoordinates = props.userCoordinates;
-  return props.queriedUsers.length > 0 ? (
+const PendingConnectionsScreen = (props) => {
+  // const mapConnectionsToGroup = () => {
+  //   let connectionsToGroup = {};
+  //   props.connections.map(c => {
+  //     props.groups.map(g => {
+  //       if (c.id == g.connectionId) {
+  //         connectionsToGroup[c.id] = g;
+  //       }
+  //     })
+  //   });
+  //   return connectionsToGroup;
+  // }
+
+  const requests = props.route.params.currentRequests;
+
+  return requests.length > 0 ? (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        {props.queriedUsers.map((user, index) => {
+        {requests.map((user, index) => {
           const distance = getDistance(
-            userCoordinates[0], 
-            userCoordinates[1], 
-            user.coordinates[0], 
+            props.userCoordinates[0],
+            props.userCoordinates[1],
+            user.coordinates[0],
             user.coordinates[1]
           );
           return (
-            <TouchableOpacity key={`queried-user-${index}`} onPress={() => props.navigation.navigate('QueriedProfile', { user, index })}>
+            <TouchableOpacity key={`queried-user-${index}`} onPress={() => props.navigation.navigate('RequestorProfile', { user, index })}>
               <ContactBox
                 name={user.name}
                 location={user.location}
                 distance={distance}
                 type='Runner'
+                isRequesting={true}
               />
             </TouchableOpacity>
           )
@@ -33,8 +47,8 @@ const SearchScreen = (props) => {
   ) : (
       <EmptyState
         photo={require('../../assets/running.png')}
-        header="No new contacts to show"
-        subtitle="Check back again next week!"
+        header="No pending requests"
+        subtitle="Talk to the ones you have"
       />
     );
 }
@@ -51,11 +65,10 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => {
   return {
     userCoordinates: state.userReducer.user.coordinates || [0, 0],
-    queriedUsers: state.queriedUsersReducer.queriedUsers || [],
   }
 }
 
 export default connect(
   mapStateToProps,
   {},
-)(SearchScreen);
+)(PendingConnectionsScreen);

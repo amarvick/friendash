@@ -7,8 +7,6 @@ import FormInput from '../../components/FormInput';
 const ForgotPasswordScreen = ({ navigation }) => {
   const [email, setEmail] = React.useState('');
 
-  const onChangeEmail = (email) => setEmail(email);
-
   const resetPassword = () => {
     let errors = [];
     if (email == '') {
@@ -28,7 +26,7 @@ const ForgotPasswordScreen = ({ navigation }) => {
 
       <FormInput
         labelValue={email}
-        onChangeText={(userEmail) => onChangeEmail(userEmail)}
+        onChangeText={(email) => setEmail(email)}
         placeholderText="Email"
         iconType="user"
         keyboardType="email-address"

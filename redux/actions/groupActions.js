@@ -46,9 +46,19 @@ export const addGroup = group => {
   }
 };
 
-// export const removeGroup = groupID => {
-//   return {
-//     type: 'REMOVE_GROUP',
-//     payload: groupID,
-//   }
-// };
+export const addMessageToGroup = (groupId, message) => {
+  return {
+    type: 'ADD_MESSAGE_TO_GROUP',
+    payload: {
+      groupId,
+      message
+    },
+  }
+}
+
+export const editGroup = group => {
+  return {
+    type: 'EDIT_GROUP',
+    payload: group,
+  }
+};

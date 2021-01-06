@@ -1,16 +1,24 @@
 import React from 'react';
+import TextMessageInput from '../../components/TextMessageInput';
 import { View, Text, SafeAreaView, ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import TextMessageInput from '../../components/TextMessageInput';
+
+import { addMessageToGroup } from '../../redux/actions/groupActions';
 
 const ChatScreen = (props) => {
-  const [text, setText] = React.useState({
-    text: '',
-  });
+  const [message, setMessage] = React.useState('');
+
   const sendMessage = () => {
-    if (text != '') {
-      alert('message sent!');
-      setText('');
+    if (message != null) {
+      props.addMessageToGroup(props.route.params.groupId, {
+        'id': String(Math.random() * 243523456),
+        'sender': props.userId,
+        'dateSent': '12/4/2020',
+        'message': message,
+      });
+      setMessage('');
+    } else {
+      alert('empty message')
     }
   }
 
@@ -26,7 +34,7 @@ const ChatScreen = (props) => {
                 styles.otherUserMessage :
                 styles.yourMessage
             ]}>
-              <Text>
+              <Text style={styles.messageText}>
                 {message.message}
               </Text>
             </View>
@@ -35,14 +43,17 @@ const ChatScreen = (props) => {
       </ScrollView>
       <View>
         {user.connectionStatus == 'PENDING' ? (
-          <Text>Awaiting for user to accept...</Text>
+          <View style={styles.pendingTextContainer}>
+            <Text style={styles.pendingText}>{`${user.name} has received your request. Once they accept, you will be able to exchange messages.`}</Text>
+          </View>
         ) : (
-        <TextMessageInput
-          labelValue={text}
-          placeholderText="Write message..."
-          onChange={text => setText(text)}
-          sendMessage={sendMessage}
-        />)}
+            <TextMessageInput
+              labelValue={message}
+              placeholderText="Write message..."
+              onChangeText={text => setMessage(text)}
+              sendMessage={sendMessage}
+            />
+          )}
       </View>
     </SafeAreaView>
   );
@@ -56,11 +67,13 @@ const styles = StyleSheet.create({
   },
   messageContainer: {
     borderRadius: 40,
-    minWidth: '20%',
     maxWidth: '50%',
     paddingHorizontal: 15,
     paddingVertical: 10,
     margin: 10,
+  },
+  messageText: {
+    fontSize: 16,
   },
   otherUserMessage: {
     alignSelf: 'flex-start',
@@ -68,8 +81,17 @@ const styles = StyleSheet.create({
   },
   yourMessage: {
     alignSelf: 'flex-end',
+    alignItems: 'flex-end',
     backgroundColor: '#65c2f5',
   },
+  pendingTextContainer: {
+    alignSelf: 'center',
+    padding: 10,
+  },
+  pendingText: {
+    textAlign: 'center',
+    color: 'gray',
+  }
 });
 
 const mapStateToProps = (state) => {
@@ -78,7 +100,13 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addMessageToGroup: (groupId, message) => dispatch(addMessageToGroup(groupId, message)),
+  }
+}
+
 export default connect(
   mapStateToProps,
-  {},
+  mapDispatchToProps,
 )(ChatScreen);

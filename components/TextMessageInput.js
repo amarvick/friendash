@@ -18,7 +18,7 @@ const TextMessageInput = ({ labelValue, placeholderText, sendMessage, ...props }
         <Icon
           name='md-paper-plane'
           size={25}
-          color="#65c2f5"
+          color={labelValue !== '' ? "#65c2f5" : "#DCDCDC"}
           onPress={sendMessage}
         />
       </View>
@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   inputContainer: {
     width: '100%',
     height: windowHeight / 18,
-    borderColor: 'gray',
+    borderColor: '#DCDCDC',
     borderTopWidth: 1,
     flexDirection: 'row',
     alignItems: 'center',
