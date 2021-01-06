@@ -18,8 +18,17 @@ const PendingConnectionsScreen = (props) => {
   //   return connectionsToGroup;
   // }
 
-  const requests = props.route.params.currentRequests;
+  const acceptUser = user => {
+    // alert('accepting user')
+    alert(JSON.stringify(user))
+    // remove from 
+  }
 
+  const declineUser = user => {
+    alert('declining user')
+  }
+
+  const requests = props.route.params.currentRequests;
   return requests.length > 0 ? (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -38,6 +47,14 @@ const PendingConnectionsScreen = (props) => {
                 distance={distance}
                 type='Runner'
                 isRequesting={true}
+                acceptUser={() => acceptUser({
+                  ...user,
+                  connectionStatus: 'CONNECTED'
+                })}
+                declineUser={() => declineUser({
+                  ...user,
+                  connectionStatus: 'REJECTED'
+                })}
               />
             </TouchableOpacity>
           )

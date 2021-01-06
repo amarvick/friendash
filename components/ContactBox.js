@@ -3,14 +3,22 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '../utils/Dimensions';
 import FormButton from './FormButton';
 
-const ContactBox = ({ name, location, distance, type, isRequesting }) => {
+const ContactBox = ({ 
+  name, 
+  location, 
+  distance, 
+  type, 
+  isRequesting,
+  acceptUser,
+  declineUser,
+}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>{name}</Text>
       </View>
-      <View style={styles.body}>
-        <View>
+      <View style={styles.bodyContainer}>
+        <View style={styles.userInfo}>
           <View style={styles.bodyContent}>
             <Image style={styles.contactImage} source={require('../assets/running.png')} />
           </View>
@@ -21,18 +29,22 @@ const ContactBox = ({ name, location, distance, type, isRequesting }) => {
           </View>
         </View>
         {isRequesting ? (
-          <View>
+          <View style={styles.respondRequestContainer}>
             <Text>"Hey, let's go on a run!"</Text>
-            <FormButton 
-              buttonText="Accept"
-            />
-            <FormButton 
-              buttonText="Decline"
-            />
+            <View style={styles.buttonGroup}>
+              <FormButton
+                buttonText="Accept"
+                onPress={acceptUser}
+              />
+              <FormButton
+                buttonText="Decline"
+                onPress={declineUser}
+              />
+            </View>
           </View>
         ) : null}
       </View>
-    </View>
+    </View >
   );
 }
 
@@ -42,7 +54,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     width: windowWidth / 1.1,
-    height: windowHeight / 6,
+    // height: windowHeight / 6, // this is problematic
     borderColor: '#65c2f5',
     borderRadius: 5,
     borderWidth: 1,
@@ -70,8 +82,7 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
   },
-  body: {
-    flexDirection: 'row',
+  bodyContainer: {
     width: '100%',
     top: 10,
   },
@@ -82,6 +93,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     alignItems: 'center',
   },
+  userInfo: {
+    flexDirection: 'row',
+  },
   contactImage: {
     height: 75,
     width: 75,
@@ -89,6 +103,15 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     borderWidth: 1,
     top: 5,
+  },
+  respondRequestContainer: {
+    margin: 36,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonGroup: {
+    width: '100%',
+    alignItems: 'center',
   },
 });
 
