@@ -25,6 +25,13 @@ export const addConnection = connection => {
   }
 };
 
+export const editConnection = connection => {
+  return {
+    type: 'EDIT_CONNECTION',
+    payload: connection,
+  }
+};
+
 export const removeConnection = userID => {
   return {
     type: 'REMOVE_CONNECTION',

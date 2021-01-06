@@ -5,6 +5,10 @@ import { getDistance } from '../../utils/DistanceCalculator';
 import ContactBox from '../../components/ContactBox';
 import EmptyState from '../../components/EmptyState';
 
+import { editConnection } from '../../redux/actions/connectionsActions';
+import { addGroup } from '../../redux/actions/groupActions';
+import { removeConnection } from '../../redux/actions/connectionsActions';
+
 const PendingConnectionsScreen = (props) => {
   // const mapConnectionsToGroup = () => {
   //   let connectionsToGroup = {};
@@ -19,9 +23,17 @@ const PendingConnectionsScreen = (props) => {
   // }
 
   const acceptUser = user => {
-    // alert('accepting user')
-    alert(JSON.stringify(user))
-    // remove from 
+    props.editConnection(user)
+    props.addGroup({
+      id: Math.random() * 90823809,
+      messages: [{
+        id: Math.random() * 9082380923,
+        sender: user.id,
+        dateSent: '1/1/2021',
+        message: "Hey Alex, I'd like to go on a run with you sometime!"
+      }],
+      connectionId: user.id,
+    })
   }
 
   const declineUser = user => {
@@ -85,7 +97,15 @@ const mapStateToProps = (state) => {
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    editConnection: (connection) => dispatch(editConnection(connection)),
+    removeConnection: (connection) => dispatch(removeConnection(connection)),
+    addGroup: (group) => dispatch(addGroup(group))
+  }
+}
+
 export default connect(
   mapStateToProps,
-  {},
+  mapDispatchToProps,
 )(PendingConnectionsScreen);

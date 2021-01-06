@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 import { windowWidth } from '../utils/Dimensions';
 import ContactButton from './ContactButton'
 
-const ContactListItem = ({ connection, goToChat }) => {
+const ContactListItem = ({ connection, goToProfile }) => {
   const pending = connection.connectionStatus == 'PENDING' ? (
     <Text style={styles.pendingText}>Pending...</Text>
   ) : null;
@@ -17,7 +17,7 @@ const ContactListItem = ({ connection, goToChat }) => {
         </View>
       </View>
       <View style={styles.contactOptions}>
-        <ContactButton buttonText='Chat' onPress={goToChat} />
+        <ContactButton buttonText='View Profile' onPress={goToProfile} />
       </View>
     </View>
   );

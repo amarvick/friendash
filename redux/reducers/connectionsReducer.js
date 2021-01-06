@@ -13,10 +13,19 @@ export const connectionsReducer = (state = initialState, action) => {
       return {
         connections: [...state.connections, payload]
       };
-    // case 'REMOVE_CONNECTION':
-    //   return {
-    //     connections: state.connections.splice(payload, 1)
-    //   };
+    case 'EDIT_CONNECTION':
+      return {
+        connections: state.connections.map(c => {
+          if (c.id == payload.id) {
+            c = payload;
+          }
+          return c;
+        }),
+      };
+    case 'REMOVE_CONNECTION':
+      return {
+        connections: state.connections.splice(payload, 1)
+      };
     default:
       return state;
   }

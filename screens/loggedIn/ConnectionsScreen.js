@@ -51,11 +51,11 @@ const ConnectionsScreen = (props) => {
           const groupId = group.id;
           let messages = group.messages;
           return (
-            <TouchableOpacity key={`connection-${i}`} onPress={() => props.navigation.navigate('ConnectionProfile', { user })}>
+            <TouchableOpacity key={`connection-${i}`} onPress={() => props.navigation.navigate('Chat', { messages, user, groupId })}>
               <ContactListItem
                 image={require('../../assets/running.png')}
                 connection={user}
-                goToChat={() => props.navigation.navigate('Chat', { messages, user, groupId })}
+                goToProfile={() => props.navigation.navigate('ConnectionProfile', { user })}
               />
             </TouchableOpacity>
           )
