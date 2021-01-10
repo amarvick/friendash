@@ -54,7 +54,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 20,
     width: windowWidth / 1.1,
-    // height: windowHeight / 6, // this is problematic
     borderColor: '#65c2f5',
     borderRadius: 5,
     borderWidth: 1,
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
   },
   bodyContainer: {
     width: '100%',
-    top: 10,
+    padding: 10,
   },
   bodyContent: {
     paddingHorizontal: 25,
@@ -102,10 +101,8 @@ const styles = StyleSheet.create({
     borderColor: '#65c2f5',
     borderRadius: 100,
     borderWidth: 1,
-    top: 5,
   },
   respondRequestContainer: {
-    margin: 36,
     justifyContent: 'center',
     alignItems: 'center',
   },
