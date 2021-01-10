@@ -7,6 +7,7 @@ import { update } from '../../redux/actions/userActions';
 
 import AboutMeEditSection from '../../components/AboutMeEditSection';
 import AddItemInput from '../../components/AddItemInput';
+import FormMultipleSelect from '../../components/FormMultipleSelect';
 import ProfileHeader from '../../components/ProfileHeader';
 import RNPickerSelect from 'react-native-picker-select';
 
@@ -23,6 +24,7 @@ const EditProfileScreen = (props) => {
     trainingFor: user.trainingFor ?? [],
     trainingForOptions: {
       'Fun': user.trainingFor.includes('Fun'),
+      'Short-distance races (Up to 400m)': user.trainingFor.includes('Mid-distance races (Up to 400m)'),
       'Mid-distance races (400m - 3200m)': user.trainingFor.includes('Mid-distance races (400m - 3200m)'),
       'Long-distance races (3200m - 10k)': user.trainingFor.includes('Long-distance races (3200m - 10k)'),
       'Half Marathons': user.trainingFor.includes('Half Marathons'),
@@ -188,15 +190,12 @@ const EditProfileScreen = (props) => {
             headline="I'M TRAINING FOR..."
             component={Object.keys(data.trainingForOptions).map((t, i) => {
               return (
-                <Text
+                <FormMultipleSelect
                   key={`item-${i}`}
-                  style={[styles.trainingFor, {
-                    backgroundColor: data.trainingForOptions[t] ? '#b0d6f5' : 'white'
-                  }]}
+                  selected={data.trainingForOptions[t]}
+                  value={t}
                   onPress={() => onChangeTrainingFor(t)}
-                >
-                  {t}
-                </Text>
+                />
               )
             })}
           />
@@ -230,19 +229,19 @@ const styles = StyleSheet.create({
   aboutInput: {
     height: 100,
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 20,
     borderColor: '#DBDBDB',
     padding: 10,
   },
   placesToRun: {
-    borderRadius: 10,
+    borderRadius: 20,
     padding: 10,
     borderWidth: 1,
     width: '100%',
     borderColor: '#DBDBDB',
   },
   trainingFor: {
-    borderRadius: 10,
+    borderRadius: 20,
     padding: 10,
     borderWidth: 1,
     marginVertical: 5,
@@ -254,7 +253,7 @@ const styles = StyleSheet.create({
 const pickerStyle = {
   inputIOS: {
     color: 'black',
-    borderRadius: 10,
+    borderRadius: 20,
     borderColor: '#DBDBDB',
     borderWidth: 1,
     paddingTop: 13,
