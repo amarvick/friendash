@@ -1,16 +1,17 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import { windowHeight, windowWidth } from '../utils/Dimensions';
+import { windowWidth } from '../utils/Dimensions';
 import FormButton from './FormButton';
 
-const ContactBox = ({ 
-  name, 
-  location, 
-  distance, 
-  type, 
+const ContactBox = ({
+  name,
+  location,
+  distance,
+  type,
   isRequesting,
   acceptUser,
   declineUser,
+  openingMessage
 }) => {
   return (
     <View style={styles.container}>
@@ -30,7 +31,9 @@ const ContactBox = ({
         </View>
         {isRequesting ? (
           <View style={styles.respondRequestContainer}>
-            <Text>"Hey, let's go on a run!"</Text>
+            <Text>
+              {`"${openingMessage}"`}
+            </Text>
             <View style={styles.buttonGroup}>
               <FormButton
                 buttonText="Accept"

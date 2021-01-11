@@ -14,4 +14,8 @@ export const groups = [
     'id': 'g3',
     'messages': [],
   }, 
+  {
+    'id': 'g4',
+    'messages': ['m5'],
+  }, 
 ];

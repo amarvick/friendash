@@ -23,4 +23,10 @@ export const messages = [
     'dateSent': '12/3/2020',
     'message': 'EEEEEEEEEEEEEEEEEEE'
   },
+  {
+    'id': 'm5',
+    'sender': 20,
+    'dateSent': '12/4/2020',
+    'message': 'Sup Alex, let\'s go on a run'
+  },
 ]

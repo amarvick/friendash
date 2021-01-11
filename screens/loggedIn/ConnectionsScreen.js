@@ -27,7 +27,11 @@ const ConnectionsScreen = (props) => {
     if (c.connectionStatus != 'REQUEST') {
       currentConnections.push(c);
     } else {
-      currentRequests.push(c);
+      const openingMessage = connectionsToGroup[c.id].messages[0].message || "";
+      currentRequests.push({
+        ...c,
+        openingMessage,
+      });
     }
   });
 

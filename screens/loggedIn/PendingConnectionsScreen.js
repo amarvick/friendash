@@ -10,19 +10,7 @@ import { addGroup } from '../../redux/actions/groupActions';
 import { removeConnection } from '../../redux/actions/connectionsActions';
 
 const PendingConnectionsScreen = (props) => {
-  // const mapConnectionsToGroup = () => {
-  //   let connectionsToGroup = {};
-  //   props.connections.map(c => {
-  //     props.groups.map(g => {
-  //       if (c.id == g.connectionId) {
-  //         connectionsToGroup[c.id] = g;
-  //       }
-  //     })
-  //   });
-  //   return connectionsToGroup;
-  // }
-
-  const acceptUser = user => {
+  const acceptUser = (user, message) => {
     props.editConnection(user)
     props.addGroup({
       id: Math.random() * 90823809,
@@ -30,7 +18,7 @@ const PendingConnectionsScreen = (props) => {
         id: Math.random() * 9082380923,
         sender: user.id,
         dateSent: '1/1/2021',
-        message: "Hey Alex, I'd like to go on a run with you sometime!"
+        message,
       }],
       connectionId: user.id,
     })
@@ -51,6 +39,9 @@ const PendingConnectionsScreen = (props) => {
             user.coordinates[0],
             user.coordinates[1]
           );
+          const openingMessage = user.openingMessage != '' ? 
+            user.openingMessage : 
+            "I'm interested in going for a run with you!";
           return (
             <TouchableOpacity key={`queried-user-${index}`} onPress={() => props.navigation.navigate('RequestorProfile', { user, index })}>
               <ContactBox
@@ -62,11 +53,12 @@ const PendingConnectionsScreen = (props) => {
                 acceptUser={() => acceptUser({
                   ...user,
                   connectionStatus: 'CONNECTED'
-                })}
+                }, openingMessage)}
                 declineUser={() => declineUser({
                   ...user,
                   connectionStatus: 'REJECTED'
                 })}
+                openingMessage={openingMessage}
               />
             </TouchableOpacity>
           )
