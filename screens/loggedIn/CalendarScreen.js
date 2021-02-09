@@ -15,6 +15,7 @@ const CalendarScreen = (props) => {
           return (
             <TouchableOpacity key={`calendar-event-${i}`} onPress={() => props.navigation.navigate('ScheduledEventInfo', { scheduledEvent })}>
               <CalendarEvent
+                attendee={scheduledEvent.attendee}
                 eventName={scheduledEvent.eventName}
                 date={scheduledEvent.date}
                 time={scheduledEvent.time}

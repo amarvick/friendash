@@ -31,8 +31,6 @@ const ProfileScreen = (props) => {
       connectionStatus: 'PENDING'
     });
     alert('Added user');
-    // send message
-    // also go back to the queried page
   }
 
   let functionButton;

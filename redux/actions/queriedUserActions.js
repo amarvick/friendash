@@ -1,7 +1,14 @@
 import { queriedUsers } from '../data_TEMP/queried_users';
 
 export const getQueried = queriedIds => {
-  return queriedUsers.filter(user => queriedIds.includes(user.id));
+  return queriedUsers.filter(
+    user => queriedIds.includes(user.id)
+  ).map(user => {
+    return {
+      ...user,
+      connectionStatus: 'NOT_CONNECTED'
+    }
+  });
 }
 
 export const setQueriedUsersState = data => {

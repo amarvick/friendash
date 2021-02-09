@@ -10,11 +10,16 @@ import DatePicker from 'react-native-datepicker';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const ModifyEventScreen = (props) => {
-  const eventDetails = props.route.params != null ? props.route.params.eventDetails : {};
+  let eventDetails = {};
+  let isEditing = false;
+  if (props.route.params != null) {
+    eventDetails = props.route.params.eventDetails;
+    isEditing = true;
+  } 
 
   const [data, setData] = React.useState({
     eventName: eventDetails.eventName || '',
-    attendee: eventDetails.with || '',
+    attendee: eventDetails.attendee || '',
     date: eventDetails.date || new Date(),
     time: eventDetails.time || '',
     location: eventDetails.location || '',
@@ -26,8 +31,8 @@ const ModifyEventScreen = (props) => {
       ...data,
       eventName,
     });
-  }  
-  
+  }
+
   const onChangeEventAttendee = attendee => {
     setData({
       ...data,
@@ -96,12 +101,23 @@ const ModifyEventScreen = (props) => {
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.eventTitle}>{
-            JSON.stringify(eventDetails) != '{}'
-              ? `Editing Event: ${eventDetails.eventName}`
-              : 'Adding Event'
+          isEditing 
+            ? `Editing Event: ${eventDetails.eventName}` 
+            : 'Adding Event'
         }</Text>
       </View>
       <View style={styles.eventDetailsStyles}>
+
+        <FormInput
+          labelValue={data.eventInvitee}
+          onChangeText={eventAttendee => onChangeEventAttendee(eventAttendee)}
+          placeholderText="Choose attendee"
+          iconType="md-person"
+          editable={!isEditing}
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+
         <FormInput
           labelValue={data.eventName}
           onChangeText={eventName => onChangeEventName(eventName)}
@@ -163,11 +179,7 @@ const ModifyEventScreen = (props) => {
 
         <FormButton
           buttonText="Save"
-          onPress={
-            JSON.stringify(eventDetails) != '{}' ?
-              () => onEditEvent() :
-              () => onAddEvent()
-          }
+          onPress={isEditing ? () => onEditEvent() : () => onAddEvent()}
         />
       </View>
     </View>
