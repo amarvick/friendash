@@ -23,6 +23,7 @@ const Tab = createMaterialBottomTabNavigator();
 const TabOptionsGenerator = (tabLabel, tabLink) => {
   return {
     tabBarLabel: tabLabel,
+    tabBarColor: '#65c2f5',
     tabBarIcon: () => (
       <Image source={tabLink} style={styles.icons} />
     )
@@ -152,7 +153,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   icons: {
-    width: 30,
-    height: 30,
+    width: 22,
+    height: 22,
   },
 });
