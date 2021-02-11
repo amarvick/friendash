@@ -1,9 +1,7 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { Image, View, StyleSheet } from 'react-native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-
-import Icon from 'react-native-vector-icons/Ionicons';
 
 import FeedScreen from './FeedScreen';
 import CalendarScreen from './CalendarScreen';
@@ -22,12 +20,11 @@ const SearchStack = createStackNavigator();
 
 const Tab = createMaterialBottomTabNavigator();
 
-const TabOptionsGenerator = (tabLabel, tabIcon) => {
+const TabOptionsGenerator = (tabLabel, tabLink) => {
   return {
     tabBarLabel: tabLabel,
-    tabBarColor: '#65c2f5',
-    tabBarIcon: ({ color }) => (
-      <Icon name={tabIcon} color={color} size={26} />
+    tabBarIcon: () => (
+      <Image source={tabLink} style={styles.icons} />
     )
   }
 }
@@ -41,22 +38,22 @@ const MainTabScreen = () => {
       <Tab.Screen
         name="Feed"
         component={FeedStackScreen}
-        options={TabOptionsGenerator('Feed', 'md-list')}
+        options={TabOptionsGenerator('Feed', require('../../assets/icons/News.png'))}
       />
       <Tab.Screen
         name="Calendar"
         component={CalendarStackScreen}
-        options={TabOptionsGenerator('Calendar', 'md-calendar')}
+        options={TabOptionsGenerator('Calendar', require('../../assets/icons/Calendar.png'))}
       />
       <Tab.Screen
         name="Connections"
         component={ConnectionsStackScreen}
-        options={TabOptionsGenerator('Connections', 'md-people')}
+        options={TabOptionsGenerator('Connections', require('../../assets/icons/Friends.png'))}
       />
       <Tab.Screen
         name="Search"
         component={SearchStackScreen}
-        options={TabOptionsGenerator('Search', 'md-search')}
+        options={TabOptionsGenerator('Search', require('../../assets/icons/Search.png'))}
       />
     </Tab.Navigator>
   )
@@ -78,8 +75,8 @@ const StackOptions = (title, navigation) => ({
   title,
   headerRight: () => (
     <View style={styles.headerRightStyle}>
-      <Icon.Button name="md-add" size={25} backgroundColor="#65c2f5" onPress={() => navigation.navigate('AddEvent')}></Icon.Button>
-      <Icon.Button name="md-menu" size={25} backgroundColor="#65c2f5" onPress={() => navigation.openDrawer()}></Icon.Button>
+      <Image source={require('../../assets/icons/Add.png')} style={styles.icons} onPress={() => navigation.navigate('AddEvent')} />
+      <Image source={require('../../assets/icons/Menu.png')} style={styles.icons} onPress={() => navigation.openDrawer()} />
     </View>
   )
 })
@@ -153,5 +150,9 @@ const SearchStackScreen = ({ navigation }) => (
 const styles = StyleSheet.create({
   headerRightStyle: {
     flexDirection: 'row',
+  },
+  icons: {
+    width: 30,
+    height: 30,
   },
 });

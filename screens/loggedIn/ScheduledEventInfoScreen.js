@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Image, View, Text, StyleSheet } from 'react-native';
 
 import FormButton from '../../components/FormButton';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 const ScheduledEventInfoScreen = (props) => {
   let eventDetails = props.route.params.scheduledEvent;
@@ -27,19 +26,23 @@ const ScheduledEventInfoScreen = (props) => {
       </View>
       { eventDetails.status != 'Scheduled' ? <Text>
         {statusMessage}
-      </Text> : null }
+      </Text> : null}
       <View style={styles.eventDetails}>
         <View style={styles.eventDetail}>
-          <Icon name="md-person" size={30} /><Text style={styles.eventDetailText}>{eventDetails.attendee || 'Someone'}</Text>
+          <Image source={require('../../assets/icons/Person.png')} style={styles.icons}/>
+          <Text style={styles.eventDetailText}>{eventDetails.attendee || "Someone"}</Text>
         </View>
         <View style={styles.eventDetail}>
-          <Icon name="md-calendar" size={30} /><Text style={styles.eventDetailText}>{eventDetails.date}</Text>
+          <Image source={require('../../assets/icons/Calendar.png')} style={styles.icons}/>
+          <Text style={styles.eventDetailText}>{eventDetails.date}</Text>
         </View>
         <View style={styles.eventDetail}>
-          <Icon name="md-clock" size={30} /><Text style={styles.eventDetailText}>{eventDetails.time}</Text>
+          <Image source={require('../../assets/icons/Clock.png')} style={styles.icons} />
+          <Text style={styles.eventDetailText}>{eventDetails.time}</Text>
         </View>
         <View style={styles.eventDetail}>
-          <Icon name="md-locate" size={30} /><Text numberOfLines={1} style={styles.eventDetailText}>{eventDetails.location}</Text>
+          <Image source={require('../../assets/icons/Location.png')} style={styles.icons} />
+          <Text style={styles.eventDetailText}>{eventDetails.location}</Text>
         </View>
       </View>
       {eventDetails.status != 'Cancelled' ? (
@@ -79,6 +82,11 @@ const styles = StyleSheet.create({
   eventDetailText: {
     fontSize: 18,
     marginLeft: 20,
+    marginTop: 4,
+  },
+  icons: {
+    width: 30,
+    height: 30,
   },
   formButtons: {
     alignItems: 'center',
