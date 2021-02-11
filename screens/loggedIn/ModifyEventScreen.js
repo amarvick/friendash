@@ -109,7 +109,7 @@ const ModifyEventScreen = (props) => {
       <View style={styles.eventDetailsStyles}>
 
         <FormInput
-          labelValue={data.eventInvitee}
+          labelValue={data.attendee}
           onChangeText={eventAttendee => onChangeEventAttendee(eventAttendee)}
           placeholderText="Choose attendee"
           iconType="md-person"

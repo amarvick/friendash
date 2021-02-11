@@ -1,30 +1,36 @@
 import { calendar_user } from '../data_TEMP/calendar_user';
 import { calendar } from '../data_TEMP/calendar';
+import { connections } from '../data_TEMP/connections';
 
-// Temporary - don't optimize this too much, SQL will do this better :)
 export const getEvents = id => {
   const calendarUserEventsIDs = calendar_user.map(cu => {
     if (cu.userId == id) {
       return cu.calendarId
     }
-  });
+  }).filter(c => c != null);
 
-  // Returns calendar event ID to user ID; want 
-  // to make this to the full user. Refer to connections
-  const calendarUserEventToUser = {};
+  const calendarUserEventToUserIDs = {};
   calendar_user.map(cu => {
     if (cu.userId != id && calendarUserEventsIDs.includes(cu.calendarId)) {
-      calendarUserEventToUser[cu.calendarId] = cu.userId;
+      calendarUserEventToUserIDs[cu.calendarId] = cu.userId;
     }
   });
 
-  let events = []
+  const calendarUserEventToUsers = {};
+  Object.keys(calendarUserEventToUserIDs).forEach(key => {
+    connections.map(c => {
+      if (calendarUserEventToUserIDs[key] == c.id) {
+        calendarUserEventToUsers[key] = c.name;
+      }
+    })
+  })
+
+  let events = [];
   calendar.map(c => {
-    if (calendarUserEventsIDs.includes(c.id)) {
-      alert(calendarUserEventToUser[c.id]);
+    if (calendarUserEventsIDs.includes(c.id)) {  
       events.push({
         ...c,
-        attendee: calendarUserEventToUser[c.id].name,
+        attendee: calendarUserEventToUsers[c.id],
       });
     };
   });
