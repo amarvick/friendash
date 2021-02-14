@@ -18,6 +18,8 @@ const CalendarStack = createStackNavigator();
 const ConnectionsStack = createStackNavigator();
 const SearchStack = createStackNavigator();
 
+import Icon from '../../components/Icon';
+
 const Tab = createMaterialBottomTabNavigator();
 
 const TabOptionsGenerator = (tabLabel, tabLink) => {
@@ -76,8 +78,8 @@ const StackOptions = (title, navigation) => ({
   title,
   headerRight: () => (
     <View style={styles.headerRightStyle}>
-      <Image source={require('../../assets/icons/Add.png')} style={styles.icons} onPress={() => navigation.navigate('AddEvent')} />
-      <Image source={require('../../assets/icons/Menu.png')} style={styles.icons} onPress={() => navigation.openDrawer()} />
+      <Icon onPress={() => navigation.navigate('AddEvent')} source={require('../../assets/icons/Add.png')} />
+      <Icon onPress={() => navigation.openDrawer()} source={require('../../assets/icons/Menu.png')} />
     </View>
   )
 })

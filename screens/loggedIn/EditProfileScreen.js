@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, View, Text, TextInput, StyleSheet } from 'react-native';
+import { SafeAreaView, ScrollView, View, Image, TextInput, StyleSheet } from 'react-native';
 
 import FormButton from '../../components/FormButton';
 import { connect } from 'react-redux';
@@ -169,7 +169,7 @@ const EditProfileScreen = (props) => {
                   labelValue={data.preferredLocationInput}
                   placeholderText="Insert location..."
                   onChangeText={input => onChangePreferredLocationInput(input)}
-                  iconType="md-add"
+                  iconType={require('../../assets/icons/Add.png')}
                   onIconClick={() => addPreferredLocationInput()}
                 />
                 {data.preferredLocations.map((t, i) => {
@@ -178,7 +178,7 @@ const EditProfileScreen = (props) => {
                       key={`item-${i}`}
                       labelValue={t}
                       editable={false}
-                      iconType="md-close"
+                      iconType={require('../../assets/icons/Close.png')}
                       onIconClick={() => removePreferredLocationInput(i)}
                     />
                   )

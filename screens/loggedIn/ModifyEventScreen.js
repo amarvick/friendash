@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Image, View, Text, StyleSheet } from 'react-native';
 import { windowHeight } from '../../utils/Dimensions';
 import { addEvent, editEvent } from '../../redux/actions/calendarActions';
 import { connect } from 'react-redux';
@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import FormInput from '../../components/FormInput';
 import FormButton from '../../components/FormButton';
 import DatePicker from 'react-native-datepicker';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 const ModifyEventScreen = (props) => {
   let eventDetails = {};
@@ -15,7 +14,7 @@ const ModifyEventScreen = (props) => {
   if (props.route.params != null) {
     eventDetails = props.route.params.eventDetails;
     isEditing = true;
-  } 
+  }
 
   const [data, setData] = React.useState({
     eventName: eventDetails.eventName || '',
@@ -101,8 +100,8 @@ const ModifyEventScreen = (props) => {
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.eventTitle}>{
-          isEditing 
-            ? `Editing Event: ${eventDetails.eventName}` 
+          isEditing
+            ? `Editing Event: ${eventDetails.eventName}`
             : 'Adding Event'
         }</Text>
       </View>
@@ -136,10 +135,7 @@ const ModifyEventScreen = (props) => {
           confirmBtnText="Set"
           cancelBtnText="Cancel"
           iconComponent={
-            <Icon
-              style={styles.icon}
-              name='md-calendar'
-            />
+            <Image source={require('../../assets/icons/Calendar.png')} style={styles.icons} />
           }
           onDateChange={date => onChangeEventDate(date)}
           customStyles={{
@@ -157,10 +153,7 @@ const ModifyEventScreen = (props) => {
           confirmBtnText="Set"
           cancelBtnText="Cancel"
           iconComponent={
-            <Icon
-              style={styles.icon}
-              name='md-clock'
-            />
+            <Image source={require('../../assets/icons/Clock.png')} style={styles.icons} />
           }
           onDateChange={time => onChangeEventTime(time)}
           customStyles={{

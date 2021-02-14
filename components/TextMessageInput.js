@@ -1,8 +1,6 @@
 import React from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
+import { Image, View, TextInput, StyleSheet } from 'react-native';
 import { windowHeight } from '../utils/Dimensions';
-
-import Icon from 'react-native-vector-icons/Ionicons';
 
 const TextMessageInput = ({ labelValue, placeholderText, sendMessage, ...props }) => {
   return (
@@ -15,10 +13,9 @@ const TextMessageInput = ({ labelValue, placeholderText, sendMessage, ...props }
         {...props}
       />
       <View style={styles.iconStyle}>
-        <Icon
-          name='md-paper-plane'
-          size={25}
-          color={labelValue !== '' ? "#65c2f5" : "#DCDCDC"}
+        <Image
+          source={require('../assets/icons/Plane.png')}
+          style={styles.icons}
           onPress={sendMessage}
         />
       </View>

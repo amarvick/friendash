@@ -1,8 +1,6 @@
 import React from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
+import { Image, View, TextInput, StyleSheet } from 'react-native';
 import { windowHeight } from '../utils/Dimensions';
-
-import Icon from 'react-native-vector-icons/Ionicons';
 
 const AddItemInput = ({ labelValue, placeholderText, iconType, onIconClick, ...props }) => {
   return (
@@ -15,10 +13,9 @@ const AddItemInput = ({ labelValue, placeholderText, iconType, onIconClick, ...p
         {...props}
       />
       <View style={styles.iconStyle}>
-        <Icon
-          name={iconType}
-          size={25}
-          color={labelValue !== '' ? "#65c2f5" : "gray"}
+        <Image 
+          source={iconType} 
+          style={styles.icons} 
           onPress={onIconClick}
         />
       </View>
@@ -46,6 +43,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.22,
     shadowRadius: 2.22,
     elevation: 3,
+  },
+  icons: {
+    width: 22,
+    height: 22,
   },
   iconStyle: {
     padding: 10,

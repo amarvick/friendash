@@ -1,6 +1,7 @@
 import React from 'react';
 import { Image, View, Text, StyleSheet } from 'react-native';
 
+import Icon from '../../components/Icon';
 import FormButton from '../../components/FormButton';
 
 const ScheduledEventInfoScreen = (props) => {
@@ -29,19 +30,19 @@ const ScheduledEventInfoScreen = (props) => {
       </Text> : null}
       <View style={styles.eventDetails}>
         <View style={styles.eventDetail}>
-          <Image source={require('../../assets/icons/Person.png')} style={styles.icons}/>
+          <Icon source={require('../../assets/icons/Person.png')}/>
           <Text style={styles.eventDetailText}>{eventDetails.attendee || "Someone"}</Text>
         </View>
         <View style={styles.eventDetail}>
-          <Image source={require('../../assets/icons/Calendar.png')} style={styles.icons}/>
+          <Icon source={require('../../assets/icons/Calendar.png')}/>
           <Text style={styles.eventDetailText}>{eventDetails.date}</Text>
         </View>
         <View style={styles.eventDetail}>
-          <Image source={require('../../assets/icons/Clock.png')} style={styles.icons} />
+          <Icon source={require('../../assets/icons/Clock.png')}/>
           <Text style={styles.eventDetailText}>{eventDetails.time}</Text>
         </View>
         <View style={styles.eventDetail}>
-          <Image source={require('../../assets/icons/Location.png')} style={styles.icons} />
+          <Icon source={require('../../assets/icons/Location.png')}/>
           <Text style={styles.eventDetailText}>{eventDetails.location}</Text>
         </View>
       </View>
