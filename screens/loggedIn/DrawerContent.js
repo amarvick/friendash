@@ -13,7 +13,7 @@ import {
 import { logout } from '../../redux/actions/loginActions';
 import { connect } from 'react-redux';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from '../../components/Icon';
 
 const DrawerContent = (props) => {
   const user = props.user;
@@ -36,22 +36,18 @@ const DrawerContent = (props) => {
 
           <Drawer.Section style={styles.drawerSection}>
             <DrawerItem
-              icon={({ color, size }) => (
+              icon={() => (
                 <Icon
-                  name="home-outline"
-                  color={color}
-                  size={size}
+                  source={require('../../assets/icons/Home.png')}
                 />
               )}
               label="Home"
-              onPress={() => props.navigation.navigate('Home') }
+              onPress={() => props.navigation.navigate('Home')}
             />
             <DrawerItem
-              icon={({ color, size }) => (
+              icon={() => (
                 <Icon
-                  name="account-outline"
-                  color={color}
-                  size={size}
+                  source={require('../../assets/icons/Person.png')}
                 />
               )}
               label="View Profile"
@@ -60,46 +56,38 @@ const DrawerContent = (props) => {
             <DrawerItem
               icon={({ color, size }) => (
                 <Icon
-                  name="settings-outline"
-                  color={color}
-                  size={size}
+                  source={require('../../assets/icons/Settings.png')}
                 />
               )}
               label="Edit Profile"
-              onPress={() => props.navigation.navigate('EditProfile') }
+              onPress={() => props.navigation.navigate('EditProfile')}
             />
             <DrawerItem
-              icon={({ color, size }) => (
+              icon={() => (
                 <Icon
-                  name="pencil-outline"
-                  color={color}
-                  size={size}
+                  source={require('../../assets/icons/Pencil.png')}
                 />
               )}
               label="Contact Us"
-              onPress={() => props.navigation.navigate('ContactUs') }
+              onPress={() => props.navigation.navigate('ContactUs')}
             />
             <DrawerItem
-              icon={({ color, size }) => (
+              icon={() => (
                 <Icon
-                  name="account-check-outline"
-                  color={color}
-                  size={size}
+                  source={require('../../assets/icons/Upgrade.png')}
                 />
               )}
               label="Subscription"
-              onPress={() => props.navigation.navigate('Subscription') }
+              onPress={() => props.navigation.navigate('Subscription')}
             />
           </Drawer.Section>
         </View>
       </DrawerContentScrollView>
       <Drawer.Section style={styles.bottomDrawerSection}>
         <DrawerItem
-          icon={({ color, size }) => (
+          icon={() => (
             <Icon
-              name="exit-to-app"
-              color={color}
-              size={size}
+              source={require('../../assets/icons/Signout.png')}
             />
           )}
           label="Sign Out"
