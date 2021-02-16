@@ -2,16 +2,14 @@ import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 import { windowHeight } from '../utils/Dimensions';
 
-import { Ionicons } from '@expo/vector-icons';
+import Icon from './Icon';
 
 const FormInput = ({ labelValue, placeholderText, iconType, ...props }) => {
   return (
     <View style={styles.inputContainer}>
       <View style={styles.iconStyle}>
-        <Ionicons
-          name={iconType}
-          size={25}
-          color="#65c2f5"
+        <Icon
+          source={iconType}
         />
       </View>
       <TextInput

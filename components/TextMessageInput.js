@@ -2,6 +2,8 @@ import React from 'react';
 import { Image, View, TextInput, StyleSheet } from 'react-native';
 import { windowHeight } from '../utils/Dimensions';
 
+import Icon from './Icon';
+
 const TextMessageInput = ({ labelValue, placeholderText, sendMessage, ...props }) => {
   return (
     <View style={styles.inputContainer}>
@@ -13,9 +15,8 @@ const TextMessageInput = ({ labelValue, placeholderText, sendMessage, ...props }
         {...props}
       />
       <View style={styles.iconStyle}>
-        <Image
+        <Icon
           source={require('../assets/icons/Plane.png')}
-          style={styles.icons}
           onPress={sendMessage}
         />
       </View>

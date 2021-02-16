@@ -85,7 +85,7 @@ const StackOptions = (title, navigation) => ({
 })
 
 const headerLeft = (navigation, page) => (
-  <Icon.Button name="ios-arrow-back" size={25} backgroundColor="#65c2f5" onPress={() => navigation.navigate(page)}></Icon.Button>
+  <Icon onPress={() => navigation.navigate(page)} source={require('../../assets/icons/BackArrow.png')} />
 )
 
 const FeedStackScreen = ({ navigation }) => (

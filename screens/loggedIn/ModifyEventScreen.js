@@ -111,7 +111,7 @@ const ModifyEventScreen = (props) => {
           labelValue={data.attendee}
           onChangeText={eventAttendee => onChangeEventAttendee(eventAttendee)}
           placeholderText="Choose attendee"
-          iconType="md-person"
+          iconType={require('../../assets/icons/Person.png')}
           editable={!isEditing}
           autoCapitalize="none"
           autoCorrect={false}
@@ -121,7 +121,7 @@ const ModifyEventScreen = (props) => {
           labelValue={data.eventName}
           onChangeText={eventName => onChangeEventName(eventName)}
           placeholderText="Name of event..."
-          iconType="md-create"
+          iconType={require('../../assets/icons/Pencil.png')}
           autoCapitalize="none"
           autoCorrect={false}
         />
@@ -135,7 +135,10 @@ const ModifyEventScreen = (props) => {
           confirmBtnText="Set"
           cancelBtnText="Cancel"
           iconComponent={
-            <Image source={require('../../assets/icons/Calendar.png')} style={styles.icons} />
+            <Image 
+              source={require('../../assets/icons/Calendar.png')} 
+              style={styles.icons} 
+            />
           }
           onDateChange={date => onChangeEventDate(date)}
           customStyles={{
@@ -153,7 +156,10 @@ const ModifyEventScreen = (props) => {
           confirmBtnText="Set"
           cancelBtnText="Cancel"
           iconComponent={
-            <Image source={require('../../assets/icons/Clock.png')} style={styles.icons} />
+            <Image 
+              source={require('../../assets/icons/Clock.png')} 
+              style={styles.icons} 
+            />
           }
           onDateChange={time => onChangeEventTime(time)}
           customStyles={{
@@ -165,7 +171,7 @@ const ModifyEventScreen = (props) => {
           labelValue={data.location}
           onChangeText={location => onChangeEventLocation(location)}
           placeholderText="Location"
-          iconType="md-pin"
+          iconType={require('../../assets/icons/Location.png')}
           autoCapitalize="none"
           autoCorrect={false}
         />
@@ -220,12 +226,8 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
   },
-  icon: {
-    width: '100%',
-    padding: 10,
-    marginLeft: 12, // change this
-    fontSize: 25,
-    color: '#65c2f5'
+  icons: {
+    marginRight: 300, // Change this later
   },
   dateInput: {
     borderWidth: 0,
