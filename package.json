@@ -30,6 +30,7 @@
     "react-moment": "^1.1.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
     "react-native-datepicker": "^1.7.2",
+    "react-native-dropdown-autocomplete": "^1.0.18",
     "react-native-gesture-handler": "^1.7.0",
     "react-native-onboarding-swiper": "^1.1.4",
     "react-native-paper": "^4.4.1",

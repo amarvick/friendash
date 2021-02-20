@@ -4,6 +4,8 @@ import { windowHeight } from '../../utils/Dimensions';
 import { addEvent, editEvent } from '../../redux/actions/calendarActions';
 import { connect } from 'react-redux';
 
+import AttendeeFormAddInput from '../../components/AttendeeFormAddInput';
+import AttendeeFormEditInput from '../../components/AttendeeFormEditInput';
 import FormInput from '../../components/FormInput';
 import FormButton from '../../components/FormButton';
 import DatePicker from 'react-native-datepicker';
@@ -106,16 +108,13 @@ const ModifyEventScreen = (props) => {
         }</Text>
       </View>
       <View style={styles.eventDetailsStyles}>
-
-        <FormInput
-          labelValue={data.attendee}
-          onChangeText={eventAttendee => onChangeEventAttendee(eventAttendee)}
-          placeholderText="Choose attendee"
-          iconType={require('../../assets/icons/Person.png')}
-          editable={!isEditing}
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
+        {isEditing ?
+          <AttendeeFormEditInput labelValue={data.attendee} /> :
+          <AttendeeFormAddInput 
+            labelValue={data.attendee}
+            onChangeText={eventAttendee => onChangeEventAttendee(eventAttendee)}
+          />
+        }
 
         <FormInput
           labelValue={data.eventName}
@@ -135,9 +134,9 @@ const ModifyEventScreen = (props) => {
           confirmBtnText="Set"
           cancelBtnText="Cancel"
           iconComponent={
-            <Image 
-              source={require('../../assets/icons/Calendar.png')} 
-              style={styles.icons} 
+            <Image
+              source={require('../../assets/icons/Calendar.png')}
+              style={styles.icons}
             />
           }
           onDateChange={date => onChangeEventDate(date)}
@@ -156,9 +155,9 @@ const ModifyEventScreen = (props) => {
           confirmBtnText="Set"
           cancelBtnText="Cancel"
           iconComponent={
-            <Image 
-              source={require('../../assets/icons/Clock.png')} 
-              style={styles.icons} 
+            <Image
+              source={require('../../assets/icons/Clock.png')}
+              style={styles.icons}
             />
           }
           onDateChange={time => onChangeEventTime(time)}
@@ -241,6 +240,12 @@ const styles = StyleSheet.create({
   }
 });
 
+const mapStateToProps = (state) => {
+  return {
+    connections: state.connectionsReducer.connections || [],
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addEvent: info => dispatch(addEvent(info)),
@@ -249,6 +254,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(ModifyEventScreen);
