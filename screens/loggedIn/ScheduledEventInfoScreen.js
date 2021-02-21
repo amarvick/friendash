@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 import Icon from '../../components/Icon';
 import FormButton from '../../components/FormButton';
@@ -28,6 +28,7 @@ const ScheduledEventInfoScreen = (props) => {
       { eventDetails.status != 'Scheduled' ? <Text>
         {statusMessage}
       </Text> : null}
+      {/* TODO - componentize these later */}
       <View style={styles.eventDetails}>
         <View style={styles.eventDetail}>
           <Icon source={require('../../assets/icons/Person.png')}/>

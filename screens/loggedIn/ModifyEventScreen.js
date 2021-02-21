@@ -27,6 +27,13 @@ const ModifyEventScreen = (props) => {
     status: eventDetails.status || '',
   });
 
+  const connectionMap = {};
+  props.connections.map(connection => {
+    connectionMap[connection.name] = connection;
+  })
+
+  const connectionNames = Object.keys(connectionMap);
+
   const onChangeEventName = eventName => {
     setData({
       ...data,
@@ -69,6 +76,12 @@ const ModifyEventScreen = (props) => {
     } else if (data.date == '') {
       alert('Please insert a date')
       return true;
+    } else if (data.attendee == '') {
+      alert('Please insert an attendee')
+      return true;
+    } else if (!connectionNames.includes(data.attendee)) {
+      alert('Please enter one of your connections. Check spelling.')
+      return true;
     } else if (data.time == '') {
       alert('Please insert a time')
       return true;
@@ -93,7 +106,10 @@ const ModifyEventScreen = (props) => {
 
   const onAddEvent = () => {
     if (!onCheckErrors()) {
-      props.addEvent(data);
+      props.addEvent({
+        ...data,
+        attendee: connectionMap[data.attendee]
+      });
       alert('event added');
     }
   }
@@ -108,14 +124,6 @@ const ModifyEventScreen = (props) => {
         }</Text>
       </View>
       <View style={styles.eventDetailsStyles}>
-        {isEditing ?
-          <AttendeeFormEditInput labelValue={data.attendee} /> :
-          <AttendeeFormAddInput 
-            labelValue={data.attendee}
-            onChangeText={eventAttendee => onChangeEventAttendee(eventAttendee)}
-          />
-        }
-
         <FormInput
           labelValue={data.eventName}
           onChangeText={eventName => onChangeEventName(eventName)}
@@ -124,6 +132,16 @@ const ModifyEventScreen = (props) => {
           autoCapitalize="none"
           autoCorrect={false}
         />
+
+        {isEditing ?
+          <AttendeeFormEditInput labelValue={data.attendee} /> :
+          <AttendeeFormAddInput
+            iconType={require('../../assets/icons/Person.png')}
+            connections={connectionNames}
+            labelValue={data.attendee}
+            onChangeText={eventAttendee => onChangeEventAttendee(eventAttendee)}
+          />
+        }
 
         <DatePicker
           date={data.date}
